@@ -1,7 +1,7 @@
 package io.ana.julia.listinha.data.mapper;
 
-import io.ana.julia.listinha.data.userDTO.UserDTO;
-import io.ana.julia.listinha.data.userEntity.UserEntity;
+import io.ana.julia.listinha.data.dto.UserDTO;
+import io.ana.julia.listinha.data.entity.UserEntity;
 import org.springframework.stereotype.Component;
 
 @Component

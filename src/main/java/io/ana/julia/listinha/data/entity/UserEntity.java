@@ -1,13 +1,22 @@
-package io.ana.julia.listinha.data.userDTO;
+package io.ana.julia.listinha.data.entity;
 
-public class UserDTO {
+import jakarta.persistence.*;
+
+@Entity
+public class UserEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "name", nullable = false)
     private String name;
+    @Column(name = "email", nullable = false)
     private String email;
+    @Column(name = "password", nullable = false)
     private String password;
 
-    public UserDTO() {}
-    public UserDTO(
+    public UserEntity() {}
+    public UserEntity(
             Long id,
             String name,
             String email,
@@ -15,7 +24,7 @@ public class UserDTO {
         this.id = id;
         this.name = name;
         this.email = email;
-       this.password = password;
+        this.password = password;
     }
 
     public void setId(Long id) {
@@ -35,7 +44,7 @@ public class UserDTO {
     }
 
     public Long getId() {
-       return this.id;
+        return this.id;
     }
 
     public String getName() {
