@@ -49,5 +49,4 @@ public class UserDTO {
     public String getPassword() {
         return this.password;
     }
-
 }
