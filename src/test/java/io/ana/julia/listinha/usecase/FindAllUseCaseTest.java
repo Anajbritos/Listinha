@@ -1,0 +1,63 @@
+package io.ana.julia.listinha.usecase;
+
+import io.ana.julia.listinha.data.UserRepository;
+import io.ana.julia.listinha.data.dto.UserDTO;
+import io.ana.julia.listinha.data.mapper.UserMapper;
+import io.ana.julia.listinha.utils.AssertionData;
+import io.ana.julia.listinha.utils.DataFactory;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.List;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+public class FindAllUseCaseTest {
+
+    private static UserRepository userRepository;
+    private static UserMapper userMapper;
+    private static FindAllUsersUseCaseImpl findAllUsersUseCase;
+
+    @BeforeEach
+    void setup() {
+        userRepository = Mockito.mock(UserRepository.class);
+        userMapper = Mockito.mock(UserMapper.class);
+        findAllUsersUseCase = new FindAllUsersUseCaseImpl(userRepository, userMapper) {
+        };
+    }
+
+    @Test
+    public void givenNoAttributes_whenExecute_thenFindAllUsers() {
+        when(userRepository.findAll()).thenReturn(
+                List.of(
+                        DataFactory.userEntity(),
+                        DataFactory.userEntity()));
+
+        when(userMapper.toUserDTO(any())).thenReturn(DataFactory.userDTO());
+        List<UserDTO> userDTOS = findAllUsersUseCase.execute();
+
+        Assertions.assertEquals(2,userDTOS.size());
+        UserDTO userDTO = userDTOS.get(0);
+        AssertionData.assertMapperUserDTOEqual(userDTO,DataFactory.userDTO());
+
+        verify(userRepository).findAll();
+        verify(userMapper, times(2)).toUserDTO(any());
+    }
+
+    @Test
+    public void givenNoAttributes_whenExecute_thenFindAllUsersEmpty() {
+        when(userRepository.findAll()).thenReturn(List.of());
+        List<UserDTO> userDTOS = findAllUsersUseCase.execute();
+        Assertions.assertEquals(0,userDTOS.size());
+
+        verify(userRepository).findAll();
+        verify(userMapper, never()).toUserDTO(any());
+    }
+
+}

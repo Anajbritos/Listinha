@@ -10,9 +10,16 @@ public class UserMapperTest {
     private final UserMapper userMapper = new UserMapper();
 
     @Test
-    public void givenUserData_whenMapper_thenValueIsEqual() {
+    public void givenUserDTO_whenMapper_thenValueIsEqual() {
         UserDTO userDTO = DataFactory.userDTO();
         UserEntity userEntity = userMapper.toUserEntity(userDTO);
-        AssertionData.assertMapperUser(userDTO,userEntity);
+        AssertionData.assertMapperUserDTO(userDTO,userEntity);
+    }
+
+    @Test
+    public void givenUserEntity_whenMapper_thenValueIsEqual() {
+        UserEntity userEntity = DataFactory.userEntity();
+        UserDTO userDTO = userMapper.toUserDTO(userEntity);
+        AssertionData.assertMapperUserEntity(userEntity,userDTO);
     }
 }
