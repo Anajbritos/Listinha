@@ -4,6 +4,7 @@ import io.ana.julia.listinha.data.UserRepository;
 import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.mapper.UserMapper;
 import io.ana.julia.listinha.exception.IdNotExistsException;
+import io.ana.julia.listinha.usecase.user.UpdateUserUseCaseImpl;
 import io.ana.julia.listinha.utils.AssertionUserData;
 import io.ana.julia.listinha.utils.DataFactoryUser;
 import org.junit.jupiter.api.Assertions;

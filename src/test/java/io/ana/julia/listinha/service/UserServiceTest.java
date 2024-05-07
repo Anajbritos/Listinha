@@ -1,7 +1,10 @@
 package io.ana.julia.listinha.service;
 
 import io.ana.julia.listinha.data.dto.UserDto;
-import io.ana.julia.listinha.usecase.*;
+import io.ana.julia.listinha.usecase.user.CreateUserUseCase;
+import io.ana.julia.listinha.usecase.user.DeleteUserUseCase;
+import io.ana.julia.listinha.usecase.user.FindAllUsersUseCase;
+import io.ana.julia.listinha.usecase.user.UpdateUserUseCase;
 import io.ana.julia.listinha.utils.AssertionUserData;
 import io.ana.julia.listinha.utils.DataFactoryUser;
 import org.junit.jupiter.api.BeforeEach;

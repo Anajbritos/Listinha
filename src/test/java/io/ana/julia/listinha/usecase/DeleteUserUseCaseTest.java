@@ -3,6 +3,7 @@ package io.ana.julia.listinha.usecase;
 import io.ana.julia.listinha.data.UserRepository;
 import io.ana.julia.listinha.data.mapper.UserMapper;
 import io.ana.julia.listinha.exception.IdNotExistsException;
+import io.ana.julia.listinha.usecase.user.DeleteUserUseCaseImpl;
 import io.ana.julia.listinha.utils.DataFactoryUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
