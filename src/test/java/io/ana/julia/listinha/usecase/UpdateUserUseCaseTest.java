@@ -31,7 +31,7 @@ public class UpdateUserUseCaseTest {
     void setup() {
         userRepository = Mockito.mock(UserRepository.class);
         userMapper = Mockito.mock(UserMapper.class);
-        updateUserUseCase = new UpdateUserUseCaseImpl(userRepository,userMapper);
+        updateUserUseCase = new UpdateUserUseCaseImpl(userRepository, userMapper);
     }
 
     @Test
@@ -55,9 +55,8 @@ public class UpdateUserUseCaseTest {
         when(userRepository.findById(any())).thenReturn(Optional.empty());
 
         Assertions.assertThrows(IdNotExistsException.class,
-                ()-> updateUserUseCase.execute(DataFactory.userDTO()));
+                () -> updateUserUseCase.execute(DataFactory.userDTO()));
 
         verify(userRepository).findById(any());
     }
-
 }
