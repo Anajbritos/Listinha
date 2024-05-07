@@ -58,7 +58,7 @@ public class ItemDto {
         return itemMeasurementDto;
     }
 
-    public void setItemMeasurementDto(UnitOfMeasureItemDto price) {
+    public void setItemMeasurementDto(UnitOfMeasureItemDto itemMeasurementDto) {
         this.itemMeasurementDto = itemMeasurementDto;
     }
     public BigDecimal getPrice() {
