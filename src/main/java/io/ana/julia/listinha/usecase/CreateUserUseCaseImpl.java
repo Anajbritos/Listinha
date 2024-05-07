@@ -19,15 +19,15 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
         this.userMapper = userMapper;
     }
 
-    public void findUserExistsById(Long id) {
-        if(userRepository.findById(id).isPresent()) {
+    public void findUserExistsByEmail(String email) {
+        if(userRepository.existsByEmail(email)) {
             throw new IdAlreadyExistsException("Usuário já cadastrado");
         }
     }
 
     @Override
     public UserDTO execute(UserDTO userDTO) {
-        findUserExistsById(userDTO.getId());
+        findUserExistsByEmail(userDTO.getEmail());
         UserEntity userEntity = userMapper.toUserEntity(userDTO);
         userRepository.save(userEntity);
         return userMapper.toUserDTO(userEntity);
