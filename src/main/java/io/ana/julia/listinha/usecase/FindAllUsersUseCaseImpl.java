@@ -6,11 +6,13 @@ import io.ana.julia.listinha.data.entity.UserEntity;
 import io.ana.julia.listinha.data.mapper.UserMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@Component
 public class FindAllUsersUseCaseImpl implements FindAllUsersUseCase {
 
     private final UserRepository userRepository;
