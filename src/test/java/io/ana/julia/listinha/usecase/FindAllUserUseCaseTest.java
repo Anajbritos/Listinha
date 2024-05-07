@@ -18,7 +18,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class FindAllUseCaseTest {
+public class FindAllUserUseCaseTest {
 
     private static UserRepository userRepository;
     private static UserMapper userMapper;

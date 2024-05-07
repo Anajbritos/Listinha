@@ -14,8 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class DeleteUserUseCaseTest {
@@ -34,11 +33,11 @@ public class DeleteUserUseCaseTest {
     @Test
     public void givenUserDtoAndLong_whenExecute_thenDeleteUserWithSuccess() {
         when(userRepository.findById(any())).thenReturn(Optional.of(DataFactory.userEntity()));
-        when(userMapper.toUserEntity(any())).thenReturn(DataFactory.userEntity());
-        deleteUserUseCase.execute(DataFactory.userDTO(), DataFactory.userDTO().getId());
+        doNothing().when(userRepository).deleteById(any());
+        deleteUserUseCase.execute(DataFactory.userDTO().getId());
 
         verify(userRepository).findById(any());
-        verify(userMapper).toUserEntity(any());
+        verify(userRepository).deleteById(any());
     }
 
     @Test
@@ -46,7 +45,7 @@ public class DeleteUserUseCaseTest {
         when(userRepository.findById(any())).thenReturn(Optional.empty());
 
         Assertions.assertThrows(IdNotExistsException.class,
-                () -> deleteUserUseCase.execute(DataFactory.userDTO(), DataFactory.userEntity().getId()));
+                () -> deleteUserUseCase.execute(DataFactory.userEntity().getId()));
 
         verify(userRepository).findById(any());
     }
