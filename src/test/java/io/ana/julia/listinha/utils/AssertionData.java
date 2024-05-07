@@ -18,4 +18,11 @@ public class AssertionData {
         Assertions.assertEquals(userEntity.getEmail(), userDTO.getEmail());
         Assertions.assertEquals(userEntity.getPassword(), userDTO.getPassword());
     }
+
+    public static void assertMapperUserDTOEqual(UserDTO userDtoA , UserDTO userDtoB) {
+        Assertions.assertEquals(userDtoA.getId(), userDtoB.getId());
+        Assertions.assertEquals(userDtoA.getName(), userDtoB.getName());
+        Assertions.assertEquals(userDtoA.getEmail(), userDtoB.getEmail());
+        Assertions.assertEquals(userDtoA.getPassword(), userDtoB.getPassword());
+    }
 }
