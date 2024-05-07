@@ -23,13 +23,13 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createUserDto);
     }
 
-    @DeleteMapping("/delete{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO) {
         UserDTO updateUserDto = userService.updateUser(userDTO);
         return ResponseEntity.status(HttpStatus.OK).body(updateUserDto);
