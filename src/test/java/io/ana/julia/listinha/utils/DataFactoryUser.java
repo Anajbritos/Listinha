@@ -3,7 +3,7 @@ package io.ana.julia.listinha.utils;
 import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.entity.UserEntity;
 
-public class DataFactory {
+public class DataFactoryUser {
 
     public static UserDto userDTO() {
         return new UserDto(

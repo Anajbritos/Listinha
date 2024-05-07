@@ -1,5 +1,7 @@
 package io.ana.julia.listinha.data.entity;
 
+import io.ana.julia.listinha.data.dto.enumDto.TypeItemDto;
+import io.ana.julia.listinha.data.dto.enumDto.UnitOfMeasureItemDto;
 import io.ana.julia.listinha.data.entity.enumEntity.TypeItemEntity;
 import io.ana.julia.listinha.data.entity.enumEntity.UnitOfMeasureItemEntity;
 import jakarta.persistence.Column;

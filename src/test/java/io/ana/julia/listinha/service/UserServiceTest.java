@@ -2,8 +2,8 @@ package io.ana.julia.listinha.service;
 
 import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.usecase.*;
-import io.ana.julia.listinha.utils.AssertionData;
-import io.ana.julia.listinha.utils.DataFactory;
+import io.ana.julia.listinha.utils.AssertionUserData;
+import io.ana.julia.listinha.utils.DataFactoryUser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -39,10 +39,10 @@ public class UserServiceTest {
 
     @Test
     public void givenUserDto_whenCreateUser_thenReturnValidCreateUser() {
-        when(createUserUseCase.execute(any())).thenReturn(DataFactory.userDTO());
+        when(createUserUseCase.execute(any())).thenReturn(DataFactoryUser.userDTO());
 
-        UserDto userDTO = userService.createUser(DataFactory.userDTO());
-        AssertionData.assertMapperUserDTOEqual(DataFactory.userDTO(), userDTO);;
+        UserDto userDTO = userService.createUser(DataFactoryUser.userDTO());
+        AssertionUserData.assertMapperUserDTOEqual(DataFactoryUser.userDTO(), userDTO);;
 
         verify(createUserUseCase).execute(any());
     }
@@ -51,16 +51,16 @@ public class UserServiceTest {
     public void givenUserDtoAndLong_whenDeleteUser_thenReturnValidDeleteUser() {
        doNothing().when(deleteUserUseCase).execute(any());
 
-       userService.deleteUser(DataFactory.userDTO().getId());
+       userService.deleteUser(DataFactoryUser.userDTO().getId());
 
         verify(deleteUserUseCase).execute(any());
     }
 
     @Test
     public void givenUserDto_whenUpdateUser_thenReturnValidUpdateUser() {
-        when(updateUserUseCase.execute(any())).thenReturn(DataFactory.userDTO());
-        UserDto userDTO = userService.updateUser(DataFactory.userDTO());
-        AssertionData.assertMapperUserDTOEqual(DataFactory.userDTO(), userDTO);
+        when(updateUserUseCase.execute(any())).thenReturn(DataFactoryUser.userDTO());
+        UserDto userDTO = userService.updateUser(DataFactoryUser.userDTO());
+        AssertionUserData.assertMapperUserDTOEqual(DataFactoryUser.userDTO(), userDTO);
 
         verify(updateUserUseCase).execute(any());
     }
@@ -69,10 +69,10 @@ public class UserServiceTest {
     public void givenNoAttributes_whenFindAllUsers_thenReturnValidListUsers() {
         when(findAllUsersUseCase.execute()).thenReturn(
                 List.of(
-                        DataFactory.userDTO(),
-                        DataFactory.userDTO()));
+                        DataFactoryUser.userDTO(),
+                        DataFactoryUser.userDTO()));
         List<UserDto> userDTOS = userService.findAllUsers();
-        AssertionData.assertMapperUserDTOEqual(DataFactory.userDTO(), userDTOS.get(0));
+        AssertionUserData.assertMapperUserDTOEqual(DataFactoryUser.userDTO(), userDTOS.get(0));
 
         verify(findAllUsersUseCase).execute();
     }

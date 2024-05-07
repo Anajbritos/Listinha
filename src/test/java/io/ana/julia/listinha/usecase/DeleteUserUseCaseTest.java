@@ -3,7 +3,7 @@ package io.ana.julia.listinha.usecase;
 import io.ana.julia.listinha.data.UserRepository;
 import io.ana.julia.listinha.data.mapper.UserMapper;
 import io.ana.julia.listinha.exception.IdNotExistsException;
-import io.ana.julia.listinha.utils.DataFactory;
+import io.ana.julia.listinha.utils.DataFactoryUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,9 +32,9 @@ public class DeleteUserUseCaseTest {
 
     @Test
     public void givenUserDtoAndLong_whenExecute_thenDeleteUserWithSuccess() {
-        when(userRepository.findById(any())).thenReturn(Optional.of(DataFactory.userEntity()));
+        when(userRepository.findById(any())).thenReturn(Optional.of(DataFactoryUser.userEntity()));
         doNothing().when(userRepository).deleteById(any());
-        deleteUserUseCase.execute(DataFactory.userDTO().getId());
+        deleteUserUseCase.execute(DataFactoryUser.userDTO().getId());
 
         verify(userRepository).findById(any());
         verify(userRepository).deleteById(any());
@@ -45,7 +45,7 @@ public class DeleteUserUseCaseTest {
         when(userRepository.findById(any())).thenReturn(Optional.empty());
 
         Assertions.assertThrows(IdNotExistsException.class,
-                () -> deleteUserUseCase.execute(DataFactory.userEntity().getId()));
+                () -> deleteUserUseCase.execute(DataFactoryUser.userEntity().getId()));
 
         verify(userRepository).findById(any());
     }

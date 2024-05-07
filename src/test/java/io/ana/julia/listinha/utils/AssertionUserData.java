@@ -4,7 +4,7 @@ import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.entity.UserEntity;
 import org.junit.jupiter.api.Assertions;
 
-public class AssertionData {
+public class AssertionUserData {
     public static void assertMapperUserDTO(UserDto userDTO, UserEntity userEntity) {
         Assertions.assertEquals(userDTO.getId(), userEntity.getId());
         Assertions.assertEquals(userDTO.getName(), userEntity.getName());

@@ -4,7 +4,7 @@ import io.ana.julia.listinha.data.UserRepository;
 import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.mapper.UserMapper;
 import io.ana.julia.listinha.exception.IdAlreadyExistsException;
-import io.ana.julia.listinha.utils.DataFactory;
+import io.ana.julia.listinha.utils.DataFactoryUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,10 +33,10 @@ public class CreateUserUseCaseTest {
     @Test
     public void givenUserDTO_whenExecute_thenCreateUserWithSuccess() {
         when(userRepository.existsByEmail(any())).thenReturn(false);
-        when(userMapper.toUserEntity(any())).thenReturn(DataFactory.userEntity());
-        when(userRepository.save(any())).thenReturn(DataFactory.userEntity());
+        when(userMapper.toUserEntity(any())).thenReturn(DataFactoryUser.userEntity());
+        when(userRepository.save(any())).thenReturn(DataFactoryUser.userEntity());
 
-        UserDto userDTO = createUserUseCase.execute(DataFactory.userDTO());
+        UserDto userDTO = createUserUseCase.execute(DataFactoryUser.userDTO());
 
         verify(userRepository).existsByEmail(any());
         verify(userMapper).toUserEntity(any());
@@ -49,7 +49,7 @@ public class CreateUserUseCaseTest {
 
         Assertions.assertThrows(
                 IdAlreadyExistsException.class,
-                ()-> createUserUseCase.execute(DataFactory.userDTO())
+                ()-> createUserUseCase.execute(DataFactoryUser.userDTO())
         );
         verify(userRepository).existsByEmail(any());
     }
