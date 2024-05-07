@@ -1,9 +1,8 @@
 package io.ana.julia.listinha.usecase;
 
 import io.ana.julia.listinha.data.UserRepository;
-import io.ana.julia.listinha.data.dto.UserDTO;
+import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.mapper.UserMapper;
-import io.ana.julia.listinha.exception.IdAlreadyExistsException;
 import io.ana.julia.listinha.exception.IdNotExistsException;
 import io.ana.julia.listinha.utils.AssertionData;
 import io.ana.julia.listinha.utils.DataFactory;
@@ -13,8 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -41,7 +38,7 @@ public class UpdateUserUseCaseTest {
         when(userRepository.save(any())).thenReturn(DataFactory.userEntity());
         when(userMapper.toUserDTO(any())).thenReturn(DataFactory.userDTO());
 
-        UserDTO userDTO = updateUserUseCase.execute(DataFactory.userDTO());
+        UserDto userDTO = updateUserUseCase.execute(DataFactory.userDTO());
         AssertionData.assertMapperUserDTO(userDTO, DataFactory.userEntity());
 
         verify(userRepository).existsById(any());

@@ -1,7 +1,7 @@
 package io.ana.julia.listinha.usecase;
 
-import io.ana.julia.listinha.data.dto.UserDTO;
+import io.ana.julia.listinha.data.dto.UserDto;
 
 public interface UpdateUserUseCase {
-    public UserDTO execute(UserDTO userDTO);
+    public UserDto execute(UserDto userDTO);
 }

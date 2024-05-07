@@ -1,6 +1,6 @@
 package io.ana.julia.listinha.controller;
 
-import io.ana.julia.listinha.data.dto.UserDTO;
+import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.service.UserServiceImpl;
 import io.ana.julia.listinha.utils.AssertionData;
 import io.ana.julia.listinha.utils.DataFactory;
@@ -34,7 +34,7 @@ public class UserControllerTest {
     public void givenResponseUserDto_whenCreateUser_thenReturnResponseCreated() {
         when(userService.createUser(any())).thenReturn(DataFactory.userDTO());
 
-        ResponseEntity<UserDTO> responseCreatedUser =
+        ResponseEntity<UserDto> responseCreatedUser =
                 userController.createUser(DataFactory.userDTO());
 
         Assertions.assertNotNull(responseCreatedUser);
@@ -63,7 +63,7 @@ public class UserControllerTest {
     public void givenResponseUserDto_whenUpdateUser_thenReturnResponseUpdated() {
         when(userService.updateUser(any())).thenReturn(DataFactory.userDTO());
 
-        ResponseEntity<UserDTO> responseUpdateUser =
+        ResponseEntity<UserDto> responseUpdateUser =
                 userController.updateUser(DataFactory.userDTO());
 
         Assertions.assertNotNull(responseUpdateUser);
@@ -82,7 +82,7 @@ public class UserControllerTest {
                         DataFactory.userDTO(),
                         DataFactory.userDTO()));
 
-        ResponseEntity<List<UserDTO>> responseFindAllUser =
+        ResponseEntity<List<UserDto>> responseFindAllUser =
                 userController.findAllUsers();
 
         Assertions.assertNotNull(responseFindAllUser);

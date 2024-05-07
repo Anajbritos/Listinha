@@ -1,6 +1,6 @@
 package io.ana.julia.listinha.controller;
 
-import io.ana.julia.listinha.data.dto.UserDTO;
+import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,8 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
-        UserDTO createUserDto = userService.createUser(userDTO);
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDTO) {
+        UserDto createUserDto = userService.createUser(userDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createUserDto);
     }
 
@@ -30,14 +30,14 @@ public class UserController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO) {
-        UserDTO updateUserDto = userService.updateUser(userDTO);
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDTO) {
+        UserDto updateUserDto = userService.updateUser(userDTO);
         return ResponseEntity.status(HttpStatus.OK).body(updateUserDto);
     }
 
     @GetMapping("/find-all")
-    public ResponseEntity<List<UserDTO>> findAllUsers() {
-        List<UserDTO> findAllUsersDto = userService.findAllUsers();
+    public ResponseEntity<List<UserDto>> findAllUsers() {
+        List<UserDto> findAllUsersDto = userService.findAllUsers();
         return ResponseEntity.status(HttpStatus.OK).body(findAllUsersDto);
     }
 }

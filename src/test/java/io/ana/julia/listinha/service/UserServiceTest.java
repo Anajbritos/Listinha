@@ -1,10 +1,9 @@
 package io.ana.julia.listinha.service;
 
-import io.ana.julia.listinha.data.dto.UserDTO;
+import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.usecase.*;
 import io.ana.julia.listinha.utils.AssertionData;
 import io.ana.julia.listinha.utils.DataFactory;
-import org.apache.catalina.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,7 +13,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -43,7 +41,7 @@ public class UserServiceTest {
     public void givenUserDto_whenCreateUser_thenReturnValidCreateUser() {
         when(createUserUseCase.execute(any())).thenReturn(DataFactory.userDTO());
 
-        UserDTO userDTO = userService.createUser(DataFactory.userDTO());
+        UserDto userDTO = userService.createUser(DataFactory.userDTO());
         AssertionData.assertMapperUserDTOEqual(DataFactory.userDTO(), userDTO);;
 
         verify(createUserUseCase).execute(any());
@@ -61,7 +59,7 @@ public class UserServiceTest {
     @Test
     public void givenUserDto_whenUpdateUser_thenReturnValidUpdateUser() {
         when(updateUserUseCase.execute(any())).thenReturn(DataFactory.userDTO());
-        UserDTO userDTO = userService.updateUser(DataFactory.userDTO());
+        UserDto userDTO = userService.updateUser(DataFactory.userDTO());
         AssertionData.assertMapperUserDTOEqual(DataFactory.userDTO(), userDTO);
 
         verify(updateUserUseCase).execute(any());
@@ -73,7 +71,7 @@ public class UserServiceTest {
                 List.of(
                         DataFactory.userDTO(),
                         DataFactory.userDTO()));
-        List<UserDTO> userDTOS = userService.findAllUsers();
+        List<UserDto> userDTOS = userService.findAllUsers();
         AssertionData.assertMapperUserDTOEqual(DataFactory.userDTO(), userDTOS.get(0));
 
         verify(findAllUsersUseCase).execute();

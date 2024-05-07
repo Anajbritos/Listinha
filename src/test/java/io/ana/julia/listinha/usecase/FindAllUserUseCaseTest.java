@@ -1,7 +1,7 @@
 package io.ana.julia.listinha.usecase;
 
 import io.ana.julia.listinha.data.UserRepository;
-import io.ana.julia.listinha.data.dto.UserDTO;
+import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.mapper.UserMapper;
 import io.ana.julia.listinha.utils.AssertionData;
 import io.ana.julia.listinha.utils.DataFactory;
@@ -40,10 +40,10 @@ public class FindAllUserUseCaseTest {
                         DataFactory.userEntity()));
 
         when(userMapper.toUserDTO(any())).thenReturn(DataFactory.userDTO());
-        List<UserDTO> userDTOS = findAllUsersUseCase.execute();
+        List<UserDto> userDTOS = findAllUsersUseCase.execute();
 
         Assertions.assertEquals(2,userDTOS.size());
-        UserDTO userDTO = userDTOS.get(0);
+        UserDto userDTO = userDTOS.get(0);
         AssertionData.assertMapperUserDTOEqual(userDTO,DataFactory.userDTO());
 
         verify(userRepository).findAll();
@@ -53,7 +53,7 @@ public class FindAllUserUseCaseTest {
     @Test
     public void givenNoAttributes_whenExecute_thenFindAllUsersEmpty() {
         when(userRepository.findAll()).thenReturn(List.of());
-        List<UserDTO> userDTOS = findAllUsersUseCase.execute();
+        List<UserDto> userDTOS = findAllUsersUseCase.execute();
         Assertions.assertEquals(0,userDTOS.size());
 
         verify(userRepository).findAll();

@@ -1,13 +1,13 @@
 package io.ana.julia.listinha.data.dto;
 
-public class UserDTO {
+public class UserDto {
     private Long id;
     private String name;
     private String email;
     private String password;
 
-    public UserDTO() {}
-    public UserDTO(
+    public UserDto() {}
+    public UserDto(
             Long id,
             String name,
             String email,
