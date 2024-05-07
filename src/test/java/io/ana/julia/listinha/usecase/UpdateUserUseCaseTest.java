@@ -1,20 +1,17 @@
 package io.ana.julia.listinha.usecase;
 
 import io.ana.julia.listinha.data.UserRepository;
-import io.ana.julia.listinha.data.dto.UserDTO;
+import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.mapper.UserMapper;
-import io.ana.julia.listinha.exception.IdAlreadyExistsException;
 import io.ana.julia.listinha.exception.IdNotExistsException;
-import io.ana.julia.listinha.utils.AssertionData;
-import io.ana.julia.listinha.utils.DataFactory;
+import io.ana.julia.listinha.utils.AssertionUserData;
+import io.ana.julia.listinha.utils.DataFactoryUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -37,12 +34,12 @@ public class UpdateUserUseCaseTest {
     @Test
     public void givenUserDTO_whenExecute_thenUpdateUserWithSuccess() {
         when(userRepository.existsById(any())).thenReturn(true);
-        when(userMapper.toUserEntity(any())).thenReturn(DataFactory.userEntity());
-        when(userRepository.save(any())).thenReturn(DataFactory.userEntity());
-        when(userMapper.toUserDTO(any())).thenReturn(DataFactory.userDTO());
+        when(userMapper.toUserEntity(any())).thenReturn(DataFactoryUser.userEntity());
+        when(userRepository.save(any())).thenReturn(DataFactoryUser.userEntity());
+        when(userMapper.toUserDTO(any())).thenReturn(DataFactoryUser.userDTO());
 
-        UserDTO userDTO = updateUserUseCase.execute(DataFactory.userDTO());
-        AssertionData.assertMapperUserDTO(userDTO, DataFactory.userEntity());
+        UserDto userDTO = updateUserUseCase.execute(DataFactoryUser.userDTO());
+        AssertionUserData.assertMapperUserDTO(userDTO, DataFactoryUser.userEntity());
 
         verify(userRepository).existsById(any());
         verify(userMapper).toUserEntity(any());
@@ -55,7 +52,7 @@ public class UpdateUserUseCaseTest {
         when(userRepository.existsById(any())).thenReturn(false);
 
         Assertions.assertThrows(IdNotExistsException.class,
-                () -> updateUserUseCase.execute(DataFactory.userDTO()));
+                () -> updateUserUseCase.execute(DataFactoryUser.userDTO()));
 
         verify(userRepository).existsById(any());
     }

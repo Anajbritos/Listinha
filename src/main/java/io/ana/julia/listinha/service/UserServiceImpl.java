@@ -1,6 +1,6 @@
 package io.ana.julia.listinha.service;
 
-import io.ana.julia.listinha.data.dto.UserDTO;
+import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.usecase.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public UserDTO createUser(UserDTO userDTO) {
+    public UserDto createUser(UserDto userDTO) {
         return createUserUseCase.execute(userDTO);
     }
 
@@ -38,12 +38,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDTO updateUser(UserDTO userDTO) {
+    public UserDto updateUser(UserDto userDTO) {
         return updateUserUseCase.execute(userDTO);
     }
 
     @Override
-    public List<UserDTO> findAllUsers() {
+    public List<UserDto> findAllUsers() {
         return findAllUsersUseCase.execute();
     }
 }

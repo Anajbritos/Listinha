@@ -1,9 +1,9 @@
 package io.ana.julia.listinha.controller;
 
-import io.ana.julia.listinha.data.dto.UserDTO;
+import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.service.UserServiceImpl;
-import io.ana.julia.listinha.utils.AssertionData;
-import io.ana.julia.listinha.utils.DataFactory;
+import io.ana.julia.listinha.utils.AssertionUserData;
+import io.ana.julia.listinha.utils.DataFactoryUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,16 +32,16 @@ public class UserControllerTest {
 
     @Test
     public void givenResponseUserDto_whenCreateUser_thenReturnResponseCreated() {
-        when(userService.createUser(any())).thenReturn(DataFactory.userDTO());
+        when(userService.createUser(any())).thenReturn(DataFactoryUser.userDTO());
 
-        ResponseEntity<UserDTO> responseCreatedUser =
-                userController.createUser(DataFactory.userDTO());
+        ResponseEntity<UserDto> responseCreatedUser =
+                userController.createUser(DataFactoryUser.userDTO());
 
         Assertions.assertNotNull(responseCreatedUser);
         Assertions.assertNotNull(responseCreatedUser.getBody());
         Assertions.assertEquals(responseCreatedUser.getStatusCode(), HttpStatus.CREATED);
-        AssertionData.assertMapperUserDTOEqual(responseCreatedUser.getBody(), DataFactory.userDTO());
-        Assertions.assertEquals(responseCreatedUser.getBody().getClass(), DataFactory.userDTO().getClass());
+        AssertionUserData.assertMapperUserDTOEqual(responseCreatedUser.getBody(), DataFactoryUser.userDTO());
+        Assertions.assertEquals(responseCreatedUser.getBody().getClass(), DataFactoryUser.userDTO().getClass());
 
         verify(userService).createUser(any());
     }
@@ -50,7 +50,7 @@ public class UserControllerTest {
     public void givenResponseVoid_whenDeleteUser_thenReturnResponseDeleted() {
         doNothing().when(userService).deleteUser(anyLong());
 
-        ResponseEntity<?> responseDeletedUser = userController.deleteUser(DataFactory.userDTO().getId());
+        ResponseEntity<?> responseDeletedUser = userController.deleteUser(DataFactoryUser.userDTO().getId());
 
         Assertions.assertNotNull(responseDeletedUser);
         Assertions.assertNull(responseDeletedUser.getBody());
@@ -61,16 +61,16 @@ public class UserControllerTest {
 
     @Test
     public void givenResponseUserDto_whenUpdateUser_thenReturnResponseUpdated() {
-        when(userService.updateUser(any())).thenReturn(DataFactory.userDTO());
+        when(userService.updateUser(any())).thenReturn(DataFactoryUser.userDTO());
 
-        ResponseEntity<UserDTO> responseUpdateUser =
-                userController.updateUser(DataFactory.userDTO());
+        ResponseEntity<UserDto> responseUpdateUser =
+                userController.updateUser(DataFactoryUser.userDTO());
 
         Assertions.assertNotNull(responseUpdateUser);
         Assertions.assertNotNull(responseUpdateUser.getBody());
         Assertions.assertEquals(responseUpdateUser.getStatusCode(), HttpStatus.OK);
-        AssertionData.assertMapperUserDTOEqual(responseUpdateUser.getBody(), DataFactory.userDTO());
-        Assertions.assertEquals(responseUpdateUser.getBody().getClass(), DataFactory.userDTO().getClass());
+        AssertionUserData.assertMapperUserDTOEqual(responseUpdateUser.getBody(), DataFactoryUser.userDTO());
+        Assertions.assertEquals(responseUpdateUser.getBody().getClass(), DataFactoryUser.userDTO().getClass());
 
         verify(userService).updateUser(any());
     }
@@ -79,16 +79,16 @@ public class UserControllerTest {
     public void givenResponseUserDto_whenFindAllUsers_thenReturnResponseUpdated() {
         when(userService.findAllUsers()).thenReturn(
                 List.of(
-                        DataFactory.userDTO(),
-                        DataFactory.userDTO()));
+                        DataFactoryUser.userDTO(),
+                        DataFactoryUser.userDTO()));
 
-        ResponseEntity<List<UserDTO>> responseFindAllUser =
+        ResponseEntity<List<UserDto>> responseFindAllUser =
                 userController.findAllUsers();
 
         Assertions.assertNotNull(responseFindAllUser);
         Assertions.assertNotNull(responseFindAllUser.getBody());
         Assertions.assertEquals(responseFindAllUser.getStatusCode(), HttpStatus.OK);
-        AssertionData.assertMapperUserDTOEqual(responseFindAllUser.getBody().get(0), DataFactory.userDTO());
+        AssertionUserData.assertMapperUserDTOEqual(responseFindAllUser.getBody().get(0), DataFactoryUser.userDTO());
         Assertions.assertEquals(responseFindAllUser.getBody().size(), 2);
 
         verify(userService).findAllUsers();

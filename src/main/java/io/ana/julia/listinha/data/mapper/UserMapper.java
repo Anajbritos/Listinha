@@ -1,21 +1,21 @@
 package io.ana.julia.listinha.data.mapper;
 
-import io.ana.julia.listinha.data.dto.UserDTO;
+import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.entity.UserEntity;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
 
-    public UserDTO toUserDTO(UserEntity userEntity) {
-        return new UserDTO(
+    public UserDto toUserDTO(UserEntity userEntity) {
+        return new UserDto(
                 userEntity.getId(),
                 userEntity.getName(),
                 userEntity.getEmail(),
                 userEntity.getPassword());
     }
 
-    public UserEntity toUserEntity(UserDTO userDTO) {
+    public UserEntity toUserEntity(UserDto userDTO) {
         return new UserEntity(
                 userDTO.getId(),
                 userDTO.getName(),

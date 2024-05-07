@@ -1,10 +1,10 @@
 package io.ana.julia.listinha.usecase;
 
 import io.ana.julia.listinha.data.UserRepository;
-import io.ana.julia.listinha.data.dto.UserDTO;
+import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.mapper.UserMapper;
-import io.ana.julia.listinha.utils.AssertionData;
-import io.ana.julia.listinha.utils.DataFactory;
+import io.ana.julia.listinha.utils.AssertionUserData;
+import io.ana.julia.listinha.utils.DataFactoryUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,15 +36,15 @@ public class FindAllUserUseCaseTest {
     public void givenNoAttributes_whenExecute_thenFindAllUsers() {
         when(userRepository.findAll()).thenReturn(
                 List.of(
-                        DataFactory.userEntity(),
-                        DataFactory.userEntity()));
+                        DataFactoryUser.userEntity(),
+                        DataFactoryUser.userEntity()));
 
-        when(userMapper.toUserDTO(any())).thenReturn(DataFactory.userDTO());
-        List<UserDTO> userDTOS = findAllUsersUseCase.execute();
+        when(userMapper.toUserDTO(any())).thenReturn(DataFactoryUser.userDTO());
+        List<UserDto> userDTOS = findAllUsersUseCase.execute();
 
         Assertions.assertEquals(2,userDTOS.size());
-        UserDTO userDTO = userDTOS.get(0);
-        AssertionData.assertMapperUserDTOEqual(userDTO,DataFactory.userDTO());
+        UserDto userDTO = userDTOS.get(0);
+        AssertionUserData.assertMapperUserDTOEqual(userDTO, DataFactoryUser.userDTO());
 
         verify(userRepository).findAll();
         verify(userMapper, times(2)).toUserDTO(any());
@@ -53,7 +53,7 @@ public class FindAllUserUseCaseTest {
     @Test
     public void givenNoAttributes_whenExecute_thenFindAllUsersEmpty() {
         when(userRepository.findAll()).thenReturn(List.of());
-        List<UserDTO> userDTOS = findAllUsersUseCase.execute();
+        List<UserDto> userDTOS = findAllUsersUseCase.execute();
         Assertions.assertEquals(0,userDTOS.size());
 
         verify(userRepository).findAll();

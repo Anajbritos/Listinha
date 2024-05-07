@@ -1,10 +1,7 @@
 package io.ana.julia.listinha.usecase;
 
 import io.ana.julia.listinha.data.UserRepository;
-import io.ana.julia.listinha.data.dto.UserDTO;
-import io.ana.julia.listinha.data.entity.UserEntity;
 import io.ana.julia.listinha.data.mapper.UserMapper;
-import io.ana.julia.listinha.exception.IdAlreadyExistsException;
 import io.ana.julia.listinha.exception.IdNotExistsException;
 import org.springframework.stereotype.Component;
 

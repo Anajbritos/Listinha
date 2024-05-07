@@ -1,7 +1,7 @@
 package io.ana.julia.listinha.usecase;
 
 import io.ana.julia.listinha.data.UserRepository;
-import io.ana.julia.listinha.data.dto.UserDTO;
+import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.entity.UserEntity;
 import io.ana.julia.listinha.data.mapper.UserMapper;
 import io.ana.julia.listinha.exception.IdAlreadyExistsException;
@@ -26,7 +26,7 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
     }
 
     @Override
-    public UserDTO execute(UserDTO userDTO) {
+    public UserDto execute(UserDto userDTO) {
         findUserExistsByEmail(userDTO.getEmail());
         UserEntity userEntity = userMapper.toUserEntity(userDTO);
         userRepository.save(userEntity);
