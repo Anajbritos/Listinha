@@ -33,8 +33,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void deleteUser(UserDTO userDTO, Long id) {
-        deleteUserUseCase.execute(userDTO,id);
+    public void deleteUser(Long id) {
+        deleteUserUseCase.execute(id);
     }
 
     @Override

@@ -36,7 +36,7 @@ public class UpdateUserUseCaseTest {
 
     @Test
     public void givenUserDTO_whenExecute_thenUpdateUserWithSuccess() {
-        when(userRepository.findById(any())).thenReturn(Optional.of(DataFactory.userEntity()));
+        when(userRepository.existsById(any())).thenReturn(true);
         when(userMapper.toUserEntity(any())).thenReturn(DataFactory.userEntity());
         when(userRepository.save(any())).thenReturn(DataFactory.userEntity());
         when(userMapper.toUserDTO(any())).thenReturn(DataFactory.userDTO());
@@ -44,7 +44,7 @@ public class UpdateUserUseCaseTest {
         UserDTO userDTO = updateUserUseCase.execute(DataFactory.userDTO());
         AssertionData.assertMapperUserDTO(userDTO, DataFactory.userEntity());
 
-        verify(userRepository).findById(any());
+        verify(userRepository).existsById(any());
         verify(userMapper).toUserEntity(any());
         verify(userRepository).save(any());
         verify(userMapper).toUserDTO(any());
@@ -52,11 +52,11 @@ public class UpdateUserUseCaseTest {
 
     @Test
     public void givenUserDTO_whenExecute_thenUpdateUserCancel() {
-        when(userRepository.findById(any())).thenReturn(Optional.empty());
+        when(userRepository.existsById(any())).thenReturn(false);
 
         Assertions.assertThrows(IdNotExistsException.class,
                 () -> updateUserUseCase.execute(DataFactory.userDTO()));
 
-        verify(userRepository).findById(any());
+        verify(userRepository).existsById(any());
     }
 }

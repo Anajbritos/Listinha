@@ -28,9 +28,8 @@ public class DeleteUserUseCaseImpl implements DeleteUserUseCase{
     }
 
     @Override
-    public void execute(UserDTO userDTO, Long id) {
+    public void execute(Long id) {
         findUserExistsById(id);
-        UserEntity userEntity = userMapper.toUserEntity(userDTO);
-        userRepository.delete(userEntity);
+        userRepository.deleteById(id);
     }
 }

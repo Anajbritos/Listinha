@@ -4,7 +4,6 @@ import io.ana.julia.listinha.data.UserRepository;
 import io.ana.julia.listinha.data.dto.UserDTO;
 import io.ana.julia.listinha.data.entity.UserEntity;
 import io.ana.julia.listinha.data.mapper.UserMapper;
-import io.ana.julia.listinha.exception.IdAlreadyExistsException;
 import io.ana.julia.listinha.exception.IdNotExistsException;
 import org.springframework.stereotype.Component;
 
@@ -22,8 +21,8 @@ public class UpdateUserUseCaseImpl implements UpdateUserUseCase{
     }
 
     public void findUserExistsById(Long id) {
-        if(userRepository.findById(id).isEmpty()) {
-            throw new IdNotExistsException("Usuário não cadastro");
+        if(!userRepository.existsById(id)){
+            throw new IdNotExistsException("Usuário não cadastrado");
         }
     }
 

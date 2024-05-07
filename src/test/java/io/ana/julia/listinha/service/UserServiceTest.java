@@ -51,11 +51,11 @@ public class UserServiceTest {
 
     @Test
     public void givenUserDtoAndLong_whenDeleteUser_thenReturnValidDeleteUser() {
-       doNothing().when(deleteUserUseCase).execute(any(),any());
+       doNothing().when(deleteUserUseCase).execute(any());
 
-       userService.deleteUser(DataFactory.userDTO(),DataFactory.userDTO().getId());
+       userService.deleteUser(DataFactory.userDTO().getId());
 
-        verify(deleteUserUseCase).execute(any(),any());
+        verify(deleteUserUseCase).execute(any());
     }
 
     @Test

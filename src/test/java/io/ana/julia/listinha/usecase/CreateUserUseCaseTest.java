@@ -34,26 +34,26 @@ public class CreateUserUseCaseTest {
 
     @Test
     public void givenUserDTO_whenExecute_thenCreateUserWithSuccess() {
-        when(userRepository.findById(any())).thenReturn(Optional.empty());
+        when(userRepository.existsByEmail(any())).thenReturn(false);
         when(userMapper.toUserEntity(any())).thenReturn(DataFactory.userEntity());
         when(userRepository.save(any())).thenReturn(DataFactory.userEntity());
 
         UserDTO userDTO = createUserUseCase.execute(DataFactory.userDTO());
 
-        verify(userRepository).findById(any());
+        verify(userRepository).existsByEmail(any());
         verify(userMapper).toUserEntity(any());
         verify(userRepository).save(any());
     }
 
     @Test
     public void givenUserDTO_whenExecute_thenCreateUserWithFailure() {
-        when(userRepository.findById(any())).thenReturn(Optional.of(DataFactory.userEntity()));
+        when(userRepository.existsByEmail(any())).thenReturn(true);
 
         Assertions.assertThrows(
                 IdAlreadyExistsException.class,
                 ()-> createUserUseCase.execute(DataFactory.userDTO())
         );
-        verify(userRepository).findById(any());
+        verify(userRepository).existsByEmail(any());
     }
 
 }
