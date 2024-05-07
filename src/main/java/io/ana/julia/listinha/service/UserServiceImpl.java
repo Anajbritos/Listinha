@@ -1,20 +1,25 @@
 package io.ana.julia.listinha.service;
 
+import io.ana.julia.listinha.data.dto.UserDTO;
 import io.ana.julia.listinha.usecase.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class UserServiceImpl implements UserService{
 
-    public CreateUserUseCaseImpl createUserUseCase;
-    public DeleteUserUseCaseImpl deleteUserUseCase;
-    public UpdateUserUseCaseImpl updateUserUseCase;
-    public FindAllUsersUseCaseImpl findAllUsersUseCase;
+    public CreateUserUseCase createUserUseCase;
+    public DeleteUserUseCase deleteUserUseCase;
+    public UpdateUserUseCase updateUserUseCase;
+    public FindAllUsersUseCase findAllUsersUseCase;
 
-    public UserServiceImpl(CreateUserUseCaseImpl createUserUseCase,
-                           DeleteUserUseCaseImpl deleteUserUseCase,
-                           UpdateUserUseCaseImpl updateUserUseCase,
-                           FindAllUsersUseCaseImpl findAllUsersUseCase) {
+    @Autowired
+    public UserServiceImpl(CreateUserUseCase createUserUseCase,
+                           DeleteUserUseCase deleteUserUseCase,
+                           UpdateUserUseCase updateUserUseCase,
+                           FindAllUsersUseCase findAllUsersUseCase) {
         this.createUserUseCase = createUserUseCase;
         this.deleteUserUseCase = deleteUserUseCase;
         this.updateUserUseCase = updateUserUseCase;
@@ -23,22 +28,22 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public CreateUserUseCase createUserUseCase() {
-        return null;
+    public UserDTO createUser(UserDTO userDTO) {
+        return createUserUseCase.execute(userDTO);
     }
 
     @Override
-    public DeleteUserUseCase deleteUserUseCase() {
-        return null;
+    public void deleteUser(UserDTO userDTO, Long id) {
+        deleteUserUseCase.execute(userDTO,id);
     }
 
     @Override
-    public UpdateUserUseCase updateUserUseCase() {
-        return null;
+    public UserDTO updateUser(UserDTO userDTO) {
+        return updateUserUseCase.execute(userDTO);
     }
 
     @Override
-    public FindAllUsersUseCase findAllUsersUseCase() {
-        return null;
+    public List<UserDTO> findAllUsers() {
+        return findAllUsersUseCase.execute();
     }
 }
