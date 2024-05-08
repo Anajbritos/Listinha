@@ -23,7 +23,7 @@ public class ItemMapper {
 
     public ItemEntity toItemEntity(ItemDto itemDto){
         return new ItemEntity(
-                itemDto.getId(),
+                itemDto.getId() ,
                 itemDto.getDescription(),
                 toTypeItemEntity(itemDto.getTypeItemDto()),
                 toMeasureItemEntity(itemDto.getItemMeasurementDto()),

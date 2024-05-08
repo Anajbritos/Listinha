@@ -1,8 +1,10 @@
 package io.ana.julia.listinha.controller;
 
 import io.ana.julia.listinha.data.dto.UserDto;
+import io.ana.julia.listinha.service.UserService;
 import io.ana.julia.listinha.service.UserServiceImpl;
 import io.ana.julia.listinha.utils.AssertionUserData;
+import io.ana.julia.listinha.utils.DataFactoryItem;
 import io.ana.julia.listinha.utils.DataFactoryUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,12 +23,12 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class UserControllerTest {
 
-    private UserServiceImpl userService;
+    private UserService userService;
     private UserController userController;
 
     @BeforeEach
     void setup() {
-        userService = Mockito.mock(UserServiceImpl.class);
+        userService = Mockito.mock(UserService.class);
         userController = new UserController(userService);
     }
 
@@ -90,6 +92,7 @@ public class UserControllerTest {
         Assertions.assertEquals(responseFindAllUser.getStatusCode(), HttpStatus.OK);
         AssertionUserData.assertMapperUserDTOEqual(responseFindAllUser.getBody().get(0), DataFactoryUser.userDTO());
         Assertions.assertEquals(responseFindAllUser.getBody().size(), 2);
+        Assertions.assertEquals(responseFindAllUser.getBody().get(0).getClass(), DataFactoryUser.userDTO().getClass());
 
         verify(userService).findAllUsers();
     }

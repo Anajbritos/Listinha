@@ -4,6 +4,7 @@ import io.ana.julia.listinha.data.ItemRepository;
 import io.ana.julia.listinha.data.dto.ItemDto;
 import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.mapper.ItemMapper;
+import io.ana.julia.listinha.exception.IdAlreadyExistsException;
 import io.ana.julia.listinha.exception.IdNotExistsException;
 import io.ana.julia.listinha.utils.AssertionItemData;
 import io.ana.julia.listinha.utils.AssertionUserData;
@@ -39,6 +40,7 @@ public class UpdateItemUseCaseTest {
     @Test
     public void givenItemDto_WhenExecute_ThenUpdateItemWithSuccess() {
         when(itemRepository.existsById(any())).thenReturn(true);
+        when(itemRepository.existsByDescription(any())).thenReturn(false);
         when(itemMapper.toItemEntity(any())).thenReturn(DataFactoryItem.itemEntity());
         when(itemRepository.save(any())).thenReturn(DataFactoryItem.itemEntity());
         when(itemMapper.toItemDTO(any())).thenReturn(DataFactoryItem.itemDto());
@@ -47,18 +49,29 @@ public class UpdateItemUseCaseTest {
         AssertionItemData.assertMapperItemDTO(itemDto, DataFactoryItem.itemEntity());
 
         verify(itemRepository).existsById(any());
+        verify(itemRepository).existsByDescription(any());
         verify(itemMapper).toItemEntity(any());
         verify(itemRepository).save(any());
         verify(itemMapper).toItemDTO(any());
     }
 
     @Test
-    public void givenItemDto_WhenExecute_ThenUpdateItemWithFailure() {
+    public void givenItemDto_WhenExecute_ThenUpdateItemWithFailureId() {
         when(itemRepository.existsById(any())).thenReturn(false);
-
         Assertions.assertThrows(IdNotExistsException.class,
                 ()-> updateItemUseCase.execute(DataFactoryItem.itemDto()));
 
         verify(itemRepository).existsById(any());
+    }
+
+    @Test
+    public void givenItemDto_WhenExecute_ThenUpdateItemWithFailureDescription() {
+        when(itemRepository.existsById(any())).thenReturn(true);
+        when(itemRepository.existsByDescription(any())).thenReturn(true);
+        Assertions.assertThrows(IdAlreadyExistsException.class,
+                ()-> updateItemUseCase.execute(DataFactoryItem.itemDto()));
+
+        verify(itemRepository).existsById(any());
+        verify(itemRepository).existsByDescription(any());
     }
 }

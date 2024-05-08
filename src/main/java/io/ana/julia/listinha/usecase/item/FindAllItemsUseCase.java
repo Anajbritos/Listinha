@@ -4,7 +4,7 @@ import io.ana.julia.listinha.data.dto.ItemDto;
 
 import java.util.List;
 
-public interface FindAllItensUseCase {
+public interface FindAllItemsUseCase {
 
     public List<ItemDto> execute();
 }

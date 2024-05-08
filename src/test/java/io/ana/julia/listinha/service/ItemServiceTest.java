@@ -3,12 +3,8 @@ package io.ana.julia.listinha.service;
 import io.ana.julia.listinha.data.dto.ItemDto;
 import io.ana.julia.listinha.usecase.item.CreateItemUseCase;
 import io.ana.julia.listinha.usecase.item.DeleteItemUseCase;
-import io.ana.julia.listinha.usecase.item.FindAllItensUseCase;
+import io.ana.julia.listinha.usecase.item.FindAllItemsUseCase;
 import io.ana.julia.listinha.usecase.item.UpdateItemUseCase;
-import io.ana.julia.listinha.usecase.user.CreateUserUseCase;
-import io.ana.julia.listinha.usecase.user.DeleteUserUseCase;
-import io.ana.julia.listinha.usecase.user.FindAllUsersUseCase;
-import io.ana.julia.listinha.usecase.user.UpdateUserUseCase;
 import io.ana.julia.listinha.utils.AssertionItemData;
 import io.ana.julia.listinha.utils.DataFactoryItem;
 import org.junit.jupiter.api.Assertions;
@@ -26,7 +22,7 @@ public class ItemServiceTest {
     private static CreateItemUseCase createItemUseCase;
     private DeleteItemUseCase deleteItemUseCase;
     private UpdateItemUseCase updateItemUseCase;
-    private FindAllItensUseCase findAllItensUseCase;
+    private FindAllItemsUseCase findAllItemsUseCase;
     private ItemServiceImpl itemService;
 
     @BeforeEach
@@ -34,12 +30,12 @@ public class ItemServiceTest {
         createItemUseCase = Mockito.mock(CreateItemUseCase.class);
         deleteItemUseCase = Mockito.mock(DeleteItemUseCase.class);
         updateItemUseCase = Mockito.mock(UpdateItemUseCase.class);
-        findAllItensUseCase = Mockito.mock(FindAllItensUseCase.class);
+        findAllItemsUseCase = Mockito.mock(FindAllItemsUseCase.class);
         itemService = new ItemServiceImpl(
                 createItemUseCase,
                 deleteItemUseCase,
                 updateItemUseCase,
-                findAllItensUseCase);
+                findAllItemsUseCase);
     }
 
     @Test
@@ -73,7 +69,7 @@ public class ItemServiceTest {
 
     @Test
     public void givenNotAttributes_whenFindAllItems_thenReturnValidFindAllItems() {
-        when(findAllItensUseCase.execute()).thenReturn(
+        when(findAllItemsUseCase.execute()).thenReturn(
                 List.of(
                 DataFactoryItem.itemDto(),
                 DataFactoryItem.itemDto()));
@@ -82,6 +78,6 @@ public class ItemServiceTest {
         AssertionItemData.assertMapperItemEquals(itemDto.get(0), DataFactoryItem.itemDto());
         Assertions.assertNotNull(itemDto);
 
-        verify(findAllItensUseCase).execute();
+        verify(findAllItemsUseCase).execute();
     }
 }

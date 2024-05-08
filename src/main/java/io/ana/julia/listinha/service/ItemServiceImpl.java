@@ -12,17 +12,17 @@ public class ItemServiceImpl implements ItemService{
     private final CreateItemUseCase createItemUseCase;
     private final DeleteItemUseCase deleteItemUseCase;
     private final UpdateItemUseCase updateItemUseCase;
-    private final FindAllItensUseCase findAllItensUseCase;
+    private final FindAllItemsUseCase findAllItemsUseCase;
 
     public ItemServiceImpl(
             CreateItemUseCase createItemUseCase,
             DeleteItemUseCase deleteItemUseCase,
             UpdateItemUseCase updateItemUseCase,
-            FindAllItensUseCase findAllItensUseCase) {
+            FindAllItemsUseCase findAllItemsUseCase) {
         this.createItemUseCase = createItemUseCase;
         this.deleteItemUseCase = deleteItemUseCase;
         this.updateItemUseCase = updateItemUseCase;
-        this.findAllItensUseCase = findAllItensUseCase;
+        this.findAllItemsUseCase = findAllItemsUseCase;
     }
 
     @Override
@@ -42,6 +42,6 @@ public class ItemServiceImpl implements ItemService{
 
     @Override
     public List<ItemDto> findAllItems() {
-        return findAllItensUseCase.execute();
+        return findAllItemsUseCase.execute();
     }
 }

@@ -20,25 +20,25 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @PostMapping("/create-item")
+    @PostMapping("/create")
     public ResponseEntity<ItemDto> createItem(@RequestBody ItemDto itemDto) {
         ItemDto bodyDto = itemService.createItem(itemDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(bodyDto);
     }
 
-    @DeleteMapping("/delete-item/{}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
         itemService.deleteItem(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @PutMapping("/update-item")
+    @PutMapping("/update")
     public ResponseEntity<ItemDto> updateItem(@RequestBody ItemDto itemDto) {
         ItemDto bodyDto = itemService.updateItem(itemDto);
         return ResponseEntity.status(HttpStatus.OK).body(bodyDto);
     }
 
-    @GetMapping("/find-all-items")
+    @GetMapping("/find-all")
     public ResponseEntity<List<ItemDto>> findAllItems() {
         List<ItemDto> bodyDtos = itemService.findAllItems();
         return ResponseEntity.status(HttpStatus.OK).body(bodyDtos);
