@@ -18,25 +18,25 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/create-user")
+    @PostMapping("/create")
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDTO) {
         UserDto createUserDto = userService.createUser(userDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createUserDto);
     }
 
-    @DeleteMapping("/delete-user/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/update-user")
+    @PutMapping("/update")
     public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDTO) {
         UserDto updateUserDto = userService.updateUser(userDTO);
         return ResponseEntity.status(HttpStatus.OK).body(updateUserDto);
     }
 
-    @GetMapping("/find-all-users")
+    @GetMapping("/find-all")
     public ResponseEntity<List<UserDto>> findAllUsers() {
         List<UserDto> findAllUsersDto = userService.findAllUsers();
         return ResponseEntity.status(HttpStatus.OK).body(findAllUsersDto);
