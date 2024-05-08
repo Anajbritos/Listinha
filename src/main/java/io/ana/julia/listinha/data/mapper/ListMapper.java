@@ -16,7 +16,7 @@ public class ListMapper {
     public ListDto toListDTO(ListEntity listEntity) {
         return new ListDto(
                 listEntity.getId(),
-                listEntity.getIdUser(),
+//                listEntity.getIdUser(),
                 listEntity.getDescription(),
                 listEntity.getDate(),
                 toPeriodTypeDto(listEntity.getPeriodTypeEntity()),
@@ -28,7 +28,7 @@ public class ListMapper {
     public ListEntity toListEntity(ListDto listDto) {
         return new ListEntity(
                 listDto.getId(),
-                listDto.getIdUser(),
+//                listDto.getIdUser(),
                 listDto.getDescription(),
                 listDto.getDate(),
                 toPeriodTypeEntity(listDto.getPeriodTypeDto()),

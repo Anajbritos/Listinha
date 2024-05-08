@@ -5,11 +5,6 @@ import io.ana.julia.listinha.usecase.list.CreateListUseCase;
 import io.ana.julia.listinha.usecase.list.DeleteListUseCase;
 import io.ana.julia.listinha.usecase.list.FindAllListUseCase;
 import io.ana.julia.listinha.usecase.list.UpdateListUseCase;
-import io.ana.julia.listinha.usecase.user.CreateUserUseCase;
-import io.ana.julia.listinha.usecase.user.DeleteUserUseCase;
-import io.ana.julia.listinha.usecase.user.FindAllUsersUseCase;
-import io.ana.julia.listinha.usecase.user.UpdateUserUseCase;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

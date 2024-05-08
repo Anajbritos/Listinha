@@ -2,23 +2,17 @@ package io.ana.julia.listinha.usecase.item;
 
 import io.ana.julia.listinha.data.ItemRepository;
 import io.ana.julia.listinha.data.dto.ItemDto;
-import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.mapper.ItemMapper;
 import io.ana.julia.listinha.exception.DescriptionAlreadyExistsException;
-import io.ana.julia.listinha.exception.IdAlreadyExistsException;
 import io.ana.julia.listinha.exception.IdNotExistsException;
 import io.ana.julia.listinha.utils.AssertionItemData;
-import io.ana.julia.listinha.utils.AssertionUserData;
 import io.ana.julia.listinha.utils.DataFactoryItem;
-import io.ana.julia.listinha.utils.DataFactoryUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;

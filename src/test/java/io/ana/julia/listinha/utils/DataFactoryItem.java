@@ -1,11 +1,9 @@
 package io.ana.julia.listinha.utils;
 
 import io.ana.julia.listinha.data.dto.ItemDto;
-import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.dto.enumDto.TypeItemDto;
 import io.ana.julia.listinha.data.dto.enumDto.UnitOfMeasureItemDto;
 import io.ana.julia.listinha.data.entity.ItemEntity;
-import io.ana.julia.listinha.data.entity.UserEntity;
 import io.ana.julia.listinha.data.entity.enumEntity.TypeItemEntity;
 import io.ana.julia.listinha.data.entity.enumEntity.UnitOfMeasureItemEntity;
 

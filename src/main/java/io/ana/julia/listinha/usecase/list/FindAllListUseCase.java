@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface FindAllListUseCase {
 
-    public List<ListDto> execute();
+    List<ListDto> execute();
 }

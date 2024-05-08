@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface FindAllItemsUseCase {
 
-    public List<ItemDto> execute();
+    List<ItemDto> execute();
 }

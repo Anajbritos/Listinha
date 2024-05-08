@@ -28,7 +28,7 @@ public class DeleteUserUseCaseTest {
     void setup() {
         userRepository = Mockito.mock(UserRepository.class);
         userMapper = Mockito.mock(UserMapper.class);
-        deleteUserUseCase = new DeleteUserUseCaseImpl(userRepository, userMapper);
+        deleteUserUseCase = new DeleteUserUseCaseImpl(userRepository,userMapper);
     }
 
     @Test

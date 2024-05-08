@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface ListService {
 
-    public ListDto createList(ListDto listDto);
-    public void deleteList(Long id);
-    public ListDto updateList(ListDto listDto);
-    public List<ListDto> findAllLists();
+    ListDto createList(ListDto listDto);
+    void deleteList(Long id);
+    ListDto updateList(ListDto listDto);
+    List<ListDto> findAllLists();
 }

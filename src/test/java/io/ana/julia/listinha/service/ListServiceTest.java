@@ -6,7 +6,6 @@ import io.ana.julia.listinha.usecase.list.DeleteListUseCase;
 import io.ana.julia.listinha.usecase.list.FindAllListUseCase;
 import io.ana.julia.listinha.usecase.list.UpdateListUseCase;
 import io.ana.julia.listinha.utils.AssertionListData;
-import io.ana.julia.listinha.utils.DataFactoryItem;
 import io.ana.julia.listinha.utils.DataFactoryList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

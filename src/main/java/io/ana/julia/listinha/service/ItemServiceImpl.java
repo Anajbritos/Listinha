@@ -1,7 +1,10 @@
 package io.ana.julia.listinha.service;
 
 import io.ana.julia.listinha.data.dto.ItemDto;
-import io.ana.julia.listinha.usecase.item.*;
+import io.ana.julia.listinha.usecase.item.CreateItemUseCase;
+import io.ana.julia.listinha.usecase.item.DeleteItemUseCase;
+import io.ana.julia.listinha.usecase.item.FindAllItemsUseCase;
+import io.ana.julia.listinha.usecase.item.UpdateItemUseCase;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

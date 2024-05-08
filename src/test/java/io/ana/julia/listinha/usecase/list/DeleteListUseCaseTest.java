@@ -21,12 +21,14 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class DeleteListUseCaseTest {
     private ListRepository listRepository;
+    private ListMapper listMapper;
     private DeleteListUseCaseImpl deleteListUseCase;
 
     @BeforeEach
     void setup() {
         listRepository = Mockito.mock(ListRepository.class);
-        deleteListUseCase = new DeleteListUseCaseImpl(listRepository);
+        listMapper = Mockito.mock(ListMapper.class);
+        deleteListUseCase = new DeleteListUseCaseImpl(listRepository,listMapper);
     }
 
     @Test

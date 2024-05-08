@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface ItemService {
 
-    public ItemDto createItem(ItemDto itemDto);
-    public void deleteItem(Long id);
-    public ItemDto updateItem(ItemDto itemDto);
-    public List<ItemDto> findAllItems();
+    ItemDto createItem(ItemDto itemDto);
+    void deleteItem(Long id);
+    ItemDto updateItem(ItemDto itemDto);
+    List<ItemDto> findAllItems();
 }

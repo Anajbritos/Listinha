@@ -13,9 +13,10 @@ public class ListEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Id
-    @Column(name = "id_user",unique = true)
-    private Long idUser;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "id_user",unique = true)
+//    private Long idUser;
     @Column(name = "description_list",unique = true)
     private String description;
     @Column(name = "date")
@@ -24,22 +25,22 @@ public class ListEntity {
     @Enumerated(EnumType.STRING)
     private PeriodTypeEntity periodTypeEntity;
     @Column(name = "period")
-    private Period period;
+    private Integer period;
     @Column(name = "amount_list")
     private BigDecimal amount;
 
     public ListEntity(){}
     public ListEntity(
             Long id,
-            Long idUser,
+//            Long idUser,
             String description,
             LocalDate date,
             PeriodTypeEntity periodTypeEntity,
-            Period period,
+            Integer period,
             BigDecimal amount) {
 
         this.id = id;
-        this.idUser = idUser;
+//        this.idUser = idUser;
         this.description = description;
         this.date = date;
         this.periodTypeEntity = periodTypeEntity;
@@ -55,13 +56,13 @@ public class ListEntity {
         this.id = id;
     }
 
-    public Long getIdUser() {
-        return idUser;
-    }
+//    public Long getIdUser() {
+//        return idUser;
+//    }
 
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
-    }
+//    public void setIdUser(Long idUser) {
+//        this.idUser = idUser;
+//    }
 
     public String getDescription() {
         return description;
@@ -87,11 +88,11 @@ public class ListEntity {
         this.periodTypeEntity = periodTypeEntity;
     }
 
-    public Period getPeriod() {
+    public Integer getPeriod() {
         return period;
     }
 
-    public void setPeriod(Period period) {
+    public void setPeriod(Integer period) {
         this.period = period;
     }
 

@@ -9,10 +9,13 @@ import org.springframework.stereotype.Component;
 public class DeleteListUseCaseImpl implements DeleteListUseCase{
 
     private final ListRepository listRepository;
+    private final ListMapper listMapper;
 
     public DeleteListUseCaseImpl(
-            ListRepository listRepository) {
+            ListRepository listRepository,
+            ListMapper listMapper) {
         this.listRepository = listRepository;
+        this.listMapper = listMapper;
     }
 
     private void searchExistingListById(Long id) {
