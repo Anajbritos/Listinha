@@ -1,0 +1,47 @@
+package io.ana.julia.listinha.service;
+
+import io.ana.julia.listinha.data.dto.ItemDto;
+import io.ana.julia.listinha.usecase.item.*;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class ItemServiceImpl implements ItemService{
+
+    private final CreateItemUseCase createItemUseCase;
+    private final DeleteItemUseCase deleteItemUseCase;
+    private final UpdateItemUseCase updateItemUseCase;
+    private final FindAllItensUseCase findAllItensUseCase;
+
+    public ItemServiceImpl(
+            CreateItemUseCase createItemUseCase,
+            DeleteItemUseCase deleteItemUseCase,
+            UpdateItemUseCase updateItemUseCase,
+            FindAllItensUseCase findAllItensUseCase) {
+        this.createItemUseCase = createItemUseCase;
+        this.deleteItemUseCase = deleteItemUseCase;
+        this.updateItemUseCase = updateItemUseCase;
+        this.findAllItensUseCase = findAllItensUseCase;
+    }
+
+    @Override
+    public ItemDto createItem(ItemDto itemDto) {
+        return createItemUseCase.execute(itemDto);
+    }
+
+    @Override
+    public void deleteItem(Long id) {
+        deleteItemUseCase.execute(id);
+    }
+
+    @Override
+    public ItemDto updateItem(ItemDto itemDto) {
+        return updateItemUseCase.execute(itemDto);
+    }
+
+    @Override
+    public List<ItemDto> findAllItems() {
+        return findAllItensUseCase.execute();
+    }
+}
