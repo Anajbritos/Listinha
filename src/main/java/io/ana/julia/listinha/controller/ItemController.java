@@ -4,12 +4,10 @@ import io.ana.julia.listinha.data.dto.ItemDto;
 import io.ana.julia.listinha.service.ItemService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
 @RestController
 @RequestMapping("/item")
 public class ItemController {

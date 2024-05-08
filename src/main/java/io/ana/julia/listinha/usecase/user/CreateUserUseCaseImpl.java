@@ -5,7 +5,6 @@ import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.entity.UserEntity;
 import io.ana.julia.listinha.data.mapper.UserMapper;
 import io.ana.julia.listinha.exception.DescriptionAlreadyExistsException;
-import io.ana.julia.listinha.exception.IdAlreadyExistsException;
 import org.springframework.stereotype.Component;
 
 @Component

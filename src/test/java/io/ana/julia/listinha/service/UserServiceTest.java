@@ -45,7 +45,7 @@ public class UserServiceTest {
         when(createUserUseCase.execute(any())).thenReturn(DataFactoryUser.userDTO());
 
         UserDto userDTO = userService.createUser(DataFactoryUser.userDTO());
-        AssertionUserData.assertMapperUserDTOEqual(DataFactoryUser.userDTO(), userDTO);;
+        AssertionUserData.assertMapperUserDTOEqual(DataFactoryUser.userDTO(), userDTO);
 
         verify(createUserUseCase).execute(any());
     }

@@ -4,16 +4,12 @@ import io.ana.julia.listinha.data.ListRepository;
 import io.ana.julia.listinha.data.dto.ListDto;
 import io.ana.julia.listinha.data.mapper.ListMapper;
 import io.ana.julia.listinha.utils.AssertionListData;
-import io.ana.julia.listinha.utils.DataFactoryItem;
 import io.ana.julia.listinha.utils.DataFactoryList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;

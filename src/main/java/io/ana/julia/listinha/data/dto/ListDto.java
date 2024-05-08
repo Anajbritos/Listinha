@@ -8,25 +8,26 @@ import java.time.Period;
 
 public class ListDto {
     private Long id;
-    private Long idUser;
+    //    private Long idUser;
     private String description;
     private LocalDate date;
     private PeriodTypeDto periodTypeDto;
-    private Period period;
+    private Integer period;
     private BigDecimal amount;
 
-    public ListDto(){}
+    public ListDto() {
+    }
 
     public ListDto(
             Long id,
-            Long idUser,
+//            Long idUser,
             String description,
             LocalDate date,
             PeriodTypeDto periodTypeDto,
-            Period period,
+            Integer period,
             BigDecimal amount) {
         this.id = id;
-        this.idUser = idUser;
+//        this.idUser = idUser;
         this.description = description;
         this.date = date;
         this.periodTypeDto = periodTypeDto;
@@ -42,13 +43,13 @@ public class ListDto {
         this.id = id;
     }
 
-    public Long getIdUser() {
-        return idUser;
-    }
+//    public Long getIdUser() {
+//        return idUser;
+//    }
 
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
-    }
+//    public void setIdUser(Long idUser) {
+//        this.idUser = idUser;
+//    }
 
     public String getDescription() {
         return description;
@@ -74,11 +75,11 @@ public class ListDto {
         this.periodTypeDto = periodTypeDto;
     }
 
-    public Period getPeriod() {
+    public Integer getPeriod() {
         return period;
     }
 
-    public void setPeriod(Period period) {
+    public void setPeriod(Integer period) {
         this.period = period;
     }
 

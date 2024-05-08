@@ -29,7 +29,8 @@ public class CreateListUseCaseImpl implements CreateListUseCase{
     @Override
     public ListDto execute(ListDto listDto) {
         findListExistByDescription(listDto.getDescription());
-        ListEntity listEntity = listRepository.save(listMapper.toListEntity(listDto));
+        ListEntity listEntity = listMapper.toListEntity(listDto);
+        listRepository.save(listEntity);
         return listMapper.toListDTO(listEntity);
     }
 }

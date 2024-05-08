@@ -2,7 +2,6 @@ package io.ana.julia.listinha.controller;
 
 import io.ana.julia.listinha.data.dto.ItemDto;
 import io.ana.julia.listinha.service.ItemService;
-import io.ana.julia.listinha.service.UserServiceImpl;
 import io.ana.julia.listinha.utils.AssertionItemData;
 import io.ana.julia.listinha.utils.DataFactoryItem;
 import org.junit.jupiter.api.Assertions;

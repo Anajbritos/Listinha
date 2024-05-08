@@ -5,5 +5,5 @@ import io.ana.julia.listinha.data.dto.UserDto;
 
 public interface UpdateItemUseCase {
 
-    public ItemDto execute(ItemDto itemDto);
+    ItemDto execute(ItemDto itemDto);
 }

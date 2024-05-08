@@ -43,7 +43,7 @@ public class UpdateListUseCaseTest {
         when(listMapper.toListDTO(any())).thenReturn(DataFactoryList.listDto());
 
         ListDto listDto = updateListUseCase.execute(DataFactoryList.listDto());
-        AssertionListData.assertMapperListEquals(listDto,DataFactoryList.listDto());
+        AssertionListData.assertMapperListEquals(listDto, DataFactoryList.listDto());
 
         verify(listRepository).findById(any());
         verify(listRepository).existsByDescription(any());
@@ -58,7 +58,7 @@ public class UpdateListUseCaseTest {
 
         Assertions.assertThrows(
                 IdNotExistsException.class,
-                ()-> updateListUseCase.execute(DataFactoryList.listDto()));
+                () -> updateListUseCase.execute(DataFactoryList.listDto()));
 
         verify(listRepository).findById(any());
     }
@@ -70,7 +70,7 @@ public class UpdateListUseCaseTest {
 
         Assertions.assertThrows(
                 DescriptionAlreadyExistsException.class,
-                ()-> updateListUseCase.execute(DataFactoryList.listDto()));
+                () -> updateListUseCase.execute(DataFactoryList.listDto()));
 
         verify(listRepository).findById(any());
         verify(listRepository).existsByDescription(any());

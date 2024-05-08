@@ -4,5 +4,5 @@ import io.ana.julia.listinha.data.dto.ItemDto;
 
 public interface CreateItemUseCase {
 
-    public ItemDto execute(ItemDto itemDto);
+    ItemDto execute(ItemDto itemDto);
 }
