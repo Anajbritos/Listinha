@@ -26,7 +26,7 @@ public class ItemController {
         return ResponseEntity.status(HttpStatus.CREATED).body(bodyDto);
     }
 
-    @DeleteMapping("/delete-item/{}")
+    @DeleteMapping("/delete-item/{id}")
     public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
         itemService.deleteItem(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

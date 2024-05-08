@@ -23,15 +23,15 @@ public class CreateItemUseCaseImpl implements CreateItemUseCase{
         this.itemMapper = itemMapper;
     }
 
-    private void findItemExistsById(Long id){
-        if(itemRepository.existsById(id)) {
+    private void existsByDescription(String description){
+        if(itemRepository.existsByDescription(description)) {
             throw new IdAlreadyExistsException("Item ja existente");
         }
     }
 
     @Override
     public ItemDto execute(ItemDto itemDto) {
-        findItemExistsById(itemDto.getId());
+        existsByDescription(itemDto.getDescription());
         ItemEntity itemEntity = itemRepository.save(itemMapper.toItemEntity(itemDto));
         return itemMapper.toItemDTO(itemEntity);
     }

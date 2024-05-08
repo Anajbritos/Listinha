@@ -6,6 +6,7 @@ import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.entity.ItemEntity;
 import io.ana.julia.listinha.data.entity.UserEntity;
 import io.ana.julia.listinha.data.mapper.ItemMapper;
+import io.ana.julia.listinha.exception.IdAlreadyExistsException;
 import io.ana.julia.listinha.exception.IdNotExistsException;
 import org.springframework.stereotype.Component;
 
@@ -22,15 +23,21 @@ public class UpdateItemUseCaseImpl implements UpdateItemUseCase{
         this.itemMapper = itemMapper;
     }
 
-    public void findUserExistsById(Long id) {
+    private void findUserExistsById(Long id) {
         if(!itemRepository.existsById(id)){
             throw new IdNotExistsException("Item não cadastrado");
+        }
+    }
+    private void existsByDescription(String description){
+        if(itemRepository.existsByDescription(description)) {
+            throw new IdAlreadyExistsException("Item descrito ja existente");
         }
     }
 
     @Override
     public ItemDto execute(ItemDto itemDto) {
         findUserExistsById(itemDto.getId());
+        existsByDescription(itemDto.getDescription());
         ItemEntity itemEntity = itemMapper.toItemEntity(itemDto);
         itemRepository.save(itemEntity);
         return itemMapper.toItemDTO(itemEntity);

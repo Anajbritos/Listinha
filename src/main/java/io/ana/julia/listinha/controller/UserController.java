@@ -4,10 +4,11 @@ import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Controller
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -17,25 +18,25 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/create")
+    @PostMapping("/create-user")
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDTO) {
         UserDto createUserDto = userService.createUser(userDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createUserDto);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete-user/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update-user")
     public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDTO) {
         UserDto updateUserDto = userService.updateUser(userDTO);
         return ResponseEntity.status(HttpStatus.OK).body(updateUserDto);
     }
 
-    @GetMapping("/find-all")
+    @GetMapping("/find-all-users")
     public ResponseEntity<List<UserDto>> findAllUsers() {
         List<UserDto> findAllUsersDto = userService.findAllUsers();
         return ResponseEntity.status(HttpStatus.OK).body(findAllUsersDto);

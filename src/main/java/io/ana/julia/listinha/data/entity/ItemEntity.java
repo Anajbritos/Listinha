@@ -1,26 +1,24 @@
 package io.ana.julia.listinha.data.entity;
 
-import io.ana.julia.listinha.data.dto.enumDto.TypeItemDto;
-import io.ana.julia.listinha.data.dto.enumDto.UnitOfMeasureItemDto;
 import io.ana.julia.listinha.data.entity.enumEntity.TypeItemEntity;
 import io.ana.julia.listinha.data.entity.enumEntity.UnitOfMeasureItemEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
+@Entity
 public class ItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "description")
+    @Column(name = "description", unique = true)
     private String description;
-    @Column(name = "type_item", unique = true)
+    @Column(name = "type_item")
+    @Enumerated(EnumType.STRING)
     private TypeItemEntity typeItemEntity;
     @Column(name = "unit_of_measure")
+    @Enumerated(EnumType.STRING)
     private UnitOfMeasureItemEntity itemMeasurementEntity;
     @Column(name = "price")
     private BigDecimal price;

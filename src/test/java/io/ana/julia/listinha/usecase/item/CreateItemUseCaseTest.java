@@ -38,25 +38,25 @@ public class CreateItemUseCaseTest {
 
     @Test
     public void givenItemDTO_whenExecute_thenCreateItemWithSuccess() {
-        when(itemRepository.existsById(any())).thenReturn(false);
+        when(itemRepository.existsByDescription(any())).thenReturn(false);
         when(itemMapper.toItemEntity(any())).thenReturn(DataFactoryItem.itemEntity());
         when(itemRepository.save(any())).thenReturn(DataFactoryItem.itemEntity());
 
         ItemDto itemDto = createItemUseCase.execute(DataFactoryItem.itemDto());
 
-        verify(itemRepository).existsById(any());
+        verify(itemRepository).existsByDescription(any());
         verify(itemMapper).toItemEntity(any());
         verify(itemRepository).save(any());
     }
 
     @Test
     public void givenItemDTO_whenExecute_thenCreateItemWithFailure() {
-        when(itemRepository.existsById(any())).thenReturn(true);
+        when(itemRepository.existsByDescription(any())).thenReturn(true);
 
         Assertions.assertThrows(
                 IdAlreadyExistsException.class, ()-> createItemUseCase.execute(DataFactoryItem.itemDto()));
 
-        verify(itemRepository).existsById(any());
+        verify(itemRepository).existsByDescription(any());
     }
 
 }
