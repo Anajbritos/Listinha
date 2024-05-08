@@ -4,5 +4,5 @@ import io.ana.julia.listinha.data.dto.ItemDto;
 
 public interface DeleteItemUseCase {
 
-    public void execute(ItemDto itemDto, Long id);
+    public void execute(Long id);
 }

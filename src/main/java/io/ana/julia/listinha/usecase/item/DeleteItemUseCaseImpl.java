@@ -22,16 +22,14 @@ public class DeleteItemUseCaseImpl implements DeleteItemUseCase{
     }
 
     private void findItemExistsById(Long id){
-        if(!itemRepository.existsById(id)) {
+        if(itemRepository.findById(id).isEmpty()) {
             throw new IdNotExistsException("Item nao existente");
         }
     }
 
     @Override
-    public void execute(ItemDto itemDto, Long id) {
-        findItemExistsById(itemDto.getId());
-        ItemEntity itemEntity = itemMapper.toItemEntity(itemDto);
-        itemRepository.delete(itemEntity);
-
+    public void execute(Long id) {
+        findItemExistsById(id);
+        itemRepository.deleteById(id);
     }
 }

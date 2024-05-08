@@ -5,14 +5,15 @@ import io.ana.julia.listinha.data.dto.ItemDto;
 import io.ana.julia.listinha.data.entity.ItemEntity;
 import io.ana.julia.listinha.data.entity.UserEntity;
 import io.ana.julia.listinha.data.mapper.ItemMapper;
+import io.ana.julia.listinha.exception.IdAlreadyExistsException;
 import io.ana.julia.listinha.exception.IdNotExistsException;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CreateItemUseCaseImpl implements CreateItemUseCase{
 
-    private static ItemRepository itemRepository;
-    private static ItemMapper itemMapper;
+    private final ItemRepository itemRepository;
+    private final ItemMapper itemMapper;
 
     public  CreateItemUseCaseImpl(
             ItemRepository itemRepository,
@@ -22,9 +23,9 @@ public class CreateItemUseCaseImpl implements CreateItemUseCase{
         this.itemMapper = itemMapper;
     }
 
-    public void findItemExistsById(Long id){
+    private void findItemExistsById(Long id){
         if(itemRepository.existsById(id)) {
-            throw new IdNotExistsException("Item ja existente");
+            throw new IdAlreadyExistsException("Item ja existente");
         }
     }
 

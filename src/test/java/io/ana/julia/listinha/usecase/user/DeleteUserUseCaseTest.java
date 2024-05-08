@@ -32,7 +32,7 @@ public class DeleteUserUseCaseTest {
     }
 
     @Test
-    public void givenUserDtoAndLong_whenExecute_thenDeleteUserWithSuccess() {
+    public void givenLong_whenExecute_thenDeleteUserWithSuccess() {
         when(userRepository.findById(any())).thenReturn(Optional.of(DataFactoryUser.userEntity()));
         doNothing().when(userRepository).deleteById(any());
         deleteUserUseCase.execute(DataFactoryUser.userDTO().getId());
@@ -42,7 +42,7 @@ public class DeleteUserUseCaseTest {
     }
 
     @Test
-    public void givenUserDtoAndLong_whenExecute_thenDeleteUserWithFailure() {
+    public void givenLong_whenExecute_thenDeleteUserWithFailure() {
         when(userRepository.findById(any())).thenReturn(Optional.empty());
 
         Assertions.assertThrows(IdNotExistsException.class,

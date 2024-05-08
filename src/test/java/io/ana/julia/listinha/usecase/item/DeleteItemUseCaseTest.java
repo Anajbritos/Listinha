@@ -4,6 +4,7 @@ import io.ana.julia.listinha.data.ItemRepository;
 import io.ana.julia.listinha.data.mapper.ItemMapper;
 import io.ana.julia.listinha.exception.IdNotExistsException;
 import io.ana.julia.listinha.utils.DataFactoryItem;
+import io.ana.julia.listinha.utils.DataFactoryUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,23 +32,21 @@ public class DeleteItemUseCaseTest {
     }
 
     @Test
-    public void givenItemDto_whenExecute_thenDeleteItemWithSuccess() {
+    public void givenLong_whenExecute_thenDeleteItemWithSuccess() {
         when(itemRepository.findById(any())).thenReturn(Optional.of(DataFactoryItem.itemEntity()));
-        when(itemMapper.toItemEntity(any())).thenReturn(DataFactoryItem.itemEntity());
-        doNothing().when(itemRepository).deleteById(DataFactoryItem.itemEntity().getId());
-        deleteItemUseCase.execute(DataFactoryItem.itemDto());
+        doNothing().when(itemRepository).deleteById(any());
+        deleteItemUseCase.execute(DataFactoryItem.itemDto().getId());
 
         verify(itemRepository).findById(any());
-        verify(itemMapper).toItemEntity(any());
         verify(itemRepository).deleteById(any());
     }
 
     @Test
-    public void givenItemDto_whenExecute_thenDeleteItemWithFailure() {
+    public void givenLong_whenExecute_thenDeleteItemWithFailure() {
         when(itemRepository.findById(any())).thenReturn(Optional.empty());
 
         Assertions.assertThrows(IdNotExistsException.class,
-                ()-> deleteItemUseCase.execute(DataFactoryItem.itemDto()));
+                () -> deleteItemUseCase.execute(DataFactoryUser.userEntity().getId()));
 
         verify(itemRepository).findById(any());
     }
