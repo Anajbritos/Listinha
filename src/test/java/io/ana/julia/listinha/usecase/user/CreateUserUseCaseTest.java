@@ -3,6 +3,7 @@ package io.ana.julia.listinha.usecase.user;
 import io.ana.julia.listinha.data.UserRepository;
 import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.mapper.UserMapper;
+import io.ana.julia.listinha.exception.DescriptionAlreadyExistsException;
 import io.ana.julia.listinha.exception.IdAlreadyExistsException;
 import io.ana.julia.listinha.usecase.user.CreateUserUseCaseImpl;
 import io.ana.julia.listinha.utils.DataFactoryUser;
@@ -49,7 +50,7 @@ public class CreateUserUseCaseTest {
         when(userRepository.existsByEmail(any())).thenReturn(true);
 
         Assertions.assertThrows(
-                IdAlreadyExistsException.class,
+                DescriptionAlreadyExistsException.class,
                 ()-> createUserUseCase.execute(DataFactoryUser.userDTO())
         );
         verify(userRepository).existsByEmail(any());

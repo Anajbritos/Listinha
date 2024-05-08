@@ -1,12 +1,9 @@
 package io.ana.julia.listinha.usecase.list;
 
 import io.ana.julia.listinha.data.ListRepository;
-import io.ana.julia.listinha.data.UserRepository;
 import io.ana.julia.listinha.data.dto.ListDto;
 import io.ana.julia.listinha.data.mapper.ListMapper;
-import io.ana.julia.listinha.data.mapper.UserMapper;
 import io.ana.julia.listinha.exception.DescriptionAlreadyExistsException;
-import io.ana.julia.listinha.usecase.user.CreateUserUseCaseImpl;
 import io.ana.julia.listinha.utils.AssertionListData;
 import io.ana.julia.listinha.utils.DataFactoryList;
 import org.junit.jupiter.api.Assertions;
