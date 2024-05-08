@@ -1,33 +1,34 @@
-package io.ana.julia.listinha.usecase;
+package io.ana.julia.listinha.usecase.user;
 
 import io.ana.julia.listinha.data.UserRepository;
 import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.entity.UserEntity;
 import io.ana.julia.listinha.data.mapper.UserMapper;
-import io.ana.julia.listinha.exception.IdAlreadyExistsException;
+import io.ana.julia.listinha.exception.IdNotExistsException;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CreateUserUseCaseImpl implements CreateUserUseCase {
+public class UpdateUserUseCaseImpl implements UpdateUserUseCase{
+
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public CreateUserUseCaseImpl(
+    public UpdateUserUseCaseImpl(
             UserRepository userRepository,
             UserMapper userMapper) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
     }
 
-    public void findUserExistsByEmail(String email) {
-        if(userRepository.existsByEmail(email)) {
-            throw new IdAlreadyExistsException("Usuário já cadastrado");
+    public void findUserExistsById(Long id) {
+        if(!userRepository.existsById(id)){
+            throw new IdNotExistsException("Usuário não cadastrado");
         }
     }
 
     @Override
     public UserDto execute(UserDto userDTO) {
-        findUserExistsByEmail(userDTO.getEmail());
+        findUserExistsById(userDTO.getId());
         UserEntity userEntity = userMapper.toUserEntity(userDTO);
         userRepository.save(userEntity);
         return userMapper.toUserDTO(userEntity);

@@ -1,4 +1,4 @@
-package io.ana.julia.listinha.usecase;
+package io.ana.julia.listinha.usecase.user;
 
 import io.ana.julia.listinha.data.dto.UserDto;
 

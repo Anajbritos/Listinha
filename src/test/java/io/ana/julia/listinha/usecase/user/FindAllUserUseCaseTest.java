@@ -1,8 +1,9 @@
-package io.ana.julia.listinha.usecase;
+package io.ana.julia.listinha.usecase.user;
 
 import io.ana.julia.listinha.data.UserRepository;
 import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.mapper.UserMapper;
+import io.ana.julia.listinha.usecase.user.FindAllUsersUseCaseImpl;
 import io.ana.julia.listinha.utils.AssertionUserData;
 import io.ana.julia.listinha.utils.DataFactoryUser;
 import org.junit.jupiter.api.Assertions;

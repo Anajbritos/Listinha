@@ -21,4 +21,12 @@ public class AssertionItemData {
         Assertions.assertEquals(itemEntity.getItemMeasurementEntity().name(), itemDto.getItemMeasurementDto().name());
         Assertions.assertEquals(itemEntity.getPrice(), itemEntity.getPrice());
     }
+
+    public static void assertMapperItemEquals(ItemDto itemDtoA, ItemDto itemDtoB) {
+        Assertions.assertEquals(itemDtoA.getId(), itemDtoB.getId());
+        Assertions.assertEquals(itemDtoA.getDescription(), itemDtoB.getDescription());
+        Assertions.assertEquals(itemDtoA.getTypeItemDto().name(), itemDtoB.getTypeItemDto().name());
+        Assertions.assertEquals(itemDtoA.getItemMeasurementDto().name(), itemDtoB.getItemMeasurementDto().name());
+        Assertions.assertEquals(itemDtoA.getPrice(), itemDtoB.getPrice());
+    }
 }
