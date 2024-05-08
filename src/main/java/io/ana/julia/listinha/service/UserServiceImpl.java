@@ -7,10 +7,11 @@ import io.ana.julia.listinha.usecase.user.FindAllUsersUseCase;
 import io.ana.julia.listinha.usecase.user.UpdateUserUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class UserServiceImpl implements UserService{
 
     public CreateUserUseCase createUserUseCase;
@@ -18,7 +19,6 @@ public class UserServiceImpl implements UserService{
     public UpdateUserUseCase updateUserUseCase;
     public FindAllUsersUseCase findAllUsersUseCase;
 
-    @Autowired
     public UserServiceImpl(CreateUserUseCase createUserUseCase,
                            DeleteUserUseCase deleteUserUseCase,
                            UpdateUserUseCase updateUserUseCase,
