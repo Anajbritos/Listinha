@@ -7,7 +7,9 @@ import io.ana.julia.listinha.data.entity.ItemEntity;
 import io.ana.julia.listinha.data.entity.UserEntity;
 import io.ana.julia.listinha.data.mapper.ItemMapper;
 import io.ana.julia.listinha.exception.IdNotExistsException;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UpdateItemUseCaseImpl implements UpdateItemUseCase{
 
     private final ItemRepository itemRepository;

@@ -4,10 +4,11 @@ import io.ana.julia.listinha.data.ItemRepository;
 import io.ana.julia.listinha.data.dto.ItemDto;
 import io.ana.julia.listinha.data.entity.ItemEntity;
 import io.ana.julia.listinha.data.mapper.ItemMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Component
 public class FindAllItensUseCaseImpl implements FindAllItensUseCase{
 
     private final ItemRepository itemRepository;
