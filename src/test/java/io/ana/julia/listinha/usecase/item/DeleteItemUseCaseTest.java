@@ -32,7 +32,7 @@ public class DeleteItemUseCaseTest {
     }
 
     @Test
-    public void givenLong_whenExecute_thenDeleteItemWithSuccess() {
+    public void givenItemId_whenExecute_thenDeleteItemWithSuccess() {
         when(itemRepository.findById(any())).thenReturn(Optional.of(DataFactoryItem.itemEntity()));
         doNothing().when(itemRepository).deleteById(any());
         deleteItemUseCase.execute(DataFactoryItem.itemDto().getId());
@@ -42,7 +42,7 @@ public class DeleteItemUseCaseTest {
     }
 
     @Test
-    public void givenLong_whenExecute_thenDeleteItemWithFailure() {
+    public void givenItemId_whenExecute_thenDeleteItemWithFailure() {
         when(itemRepository.findById(any())).thenReturn(Optional.empty());
 
         Assertions.assertThrows(IdNotExistsException.class,

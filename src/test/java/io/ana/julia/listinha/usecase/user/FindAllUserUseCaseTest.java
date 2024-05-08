@@ -52,7 +52,7 @@ public class FindAllUserUseCaseTest {
     }
 
     @Test
-    public void givenNoAttributes_whenExecute_thenFindAllUsersEmpty() {
+    public void givenNotAttributes_whenExecute_thenFindAllUsersEmpty() {
         when(userRepository.findAll()).thenReturn(List.of());
         List<UserDto> userDTOS = findAllUsersUseCase.execute();
         Assertions.assertEquals(0,userDTOS.size());
