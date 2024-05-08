@@ -5,6 +5,7 @@ import io.ana.julia.listinha.data.dto.ItemDto;
 import io.ana.julia.listinha.data.entity.ItemEntity;
 import io.ana.julia.listinha.data.entity.UserEntity;
 import io.ana.julia.listinha.data.mapper.ItemMapper;
+import io.ana.julia.listinha.exception.DescriptionAlreadyExistsException;
 import io.ana.julia.listinha.exception.IdAlreadyExistsException;
 import io.ana.julia.listinha.exception.IdNotExistsException;
 import org.springframework.stereotype.Component;
@@ -25,7 +26,7 @@ public class CreateItemUseCaseImpl implements CreateItemUseCase{
 
     private void existsByDescription(String description){
         if(itemRepository.existsByDescription(description)) {
-            throw new IdAlreadyExistsException("Item ja existente");
+            throw new DescriptionAlreadyExistsException("Item ja existente");
         }
     }
 

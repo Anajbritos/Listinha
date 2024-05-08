@@ -1,14 +1,11 @@
 package io.ana.julia.listinha.data.entity;
 
-import com.fasterxml.jackson.databind.annotation.EnumNaming;
-import io.ana.julia.listinha.data.dto.enumDto.PeriodTypeDto;
 import io.ana.julia.listinha.data.entity.enumEntity.PeriodTypeEntity;
 import jakarta.persistence.*;
 
-import java.lang.annotation.ElementType;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.Period;
-import java.util.Date;
 
 @Entity
 public class ListEntity {
@@ -22,7 +19,7 @@ public class ListEntity {
     @Column(name = "description_list",unique = true)
     private String description;
     @Column(name = "date")
-    private Date date;
+    private LocalDate date;
     @Column(name = "period_type")
     @Enumerated(EnumType.STRING)
     private PeriodTypeEntity periodTypeEntity;
@@ -36,7 +33,7 @@ public class ListEntity {
             Long id,
             Long idUser,
             String description,
-            Date date,
+            LocalDate date,
             PeriodTypeEntity periodTypeEntity,
             Period period,
             BigDecimal amount) {
@@ -74,11 +71,11 @@ public class ListEntity {
         this.description = description;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

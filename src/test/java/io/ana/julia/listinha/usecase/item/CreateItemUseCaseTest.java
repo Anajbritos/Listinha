@@ -6,6 +6,7 @@ import io.ana.julia.listinha.data.dto.ItemDto;
 import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.mapper.ItemMapper;
 import io.ana.julia.listinha.data.mapper.UserMapper;
+import io.ana.julia.listinha.exception.DescriptionAlreadyExistsException;
 import io.ana.julia.listinha.exception.IdAlreadyExistsException;
 import io.ana.julia.listinha.exception.IdNotExistsException;
 import io.ana.julia.listinha.usecase.user.CreateUserUseCaseImpl;
@@ -54,7 +55,8 @@ public class CreateItemUseCaseTest {
         when(itemRepository.existsByDescription(any())).thenReturn(true);
 
         Assertions.assertThrows(
-                IdAlreadyExistsException.class, ()-> createItemUseCase.execute(DataFactoryItem.itemDto()));
+                DescriptionAlreadyExistsException.class,
+                ()-> createItemUseCase.execute(DataFactoryItem.itemDto()));
 
         verify(itemRepository).existsByDescription(any());
     }

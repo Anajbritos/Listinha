@@ -4,6 +4,7 @@ import io.ana.julia.listinha.data.ItemRepository;
 import io.ana.julia.listinha.data.dto.ItemDto;
 import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.mapper.ItemMapper;
+import io.ana.julia.listinha.exception.DescriptionAlreadyExistsException;
 import io.ana.julia.listinha.exception.IdAlreadyExistsException;
 import io.ana.julia.listinha.exception.IdNotExistsException;
 import io.ana.julia.listinha.utils.AssertionItemData;
@@ -68,7 +69,7 @@ public class UpdateItemUseCaseTest {
     public void givenItemDto_WhenExecute_ThenUpdateItemWithFailureDescription() {
         when(itemRepository.existsById(any())).thenReturn(true);
         when(itemRepository.existsByDescription(any())).thenReturn(true);
-        Assertions.assertThrows(IdAlreadyExistsException.class,
+        Assertions.assertThrows(DescriptionAlreadyExistsException.class,
                 ()-> updateItemUseCase.execute(DataFactoryItem.itemDto()));
 
         verify(itemRepository).existsById(any());

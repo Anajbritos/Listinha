@@ -3,14 +3,14 @@ package io.ana.julia.listinha.data.dto;
 import io.ana.julia.listinha.data.dto.enumDto.PeriodTypeDto;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.Period;
-import java.util.Date;
 
 public class ListDto {
     private Long id;
     private Long idUser;
     private String description;
-    private Date date;
+    private LocalDate date;
     private PeriodTypeDto periodTypeDto;
     private Period period;
     private BigDecimal amount;
@@ -21,7 +21,7 @@ public class ListDto {
             Long id,
             Long idUser,
             String description,
-            Date date,
+            LocalDate date,
             PeriodTypeDto periodTypeDto,
             Period period,
             BigDecimal amount) {
@@ -58,11 +58,11 @@ public class ListDto {
         this.description = description;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
