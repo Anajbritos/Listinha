@@ -12,6 +12,7 @@ import io.ana.julia.listinha.data.entity.enumEntity.TypeItemEntity;
 import io.ana.julia.listinha.data.entity.enumEntity.UnitOfMeasureItemEntity;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.Period;
 import java.util.Date;
 
@@ -22,7 +23,7 @@ public class DataFactoryList {
                 1L,
                 1L,
                 "Lista Final de Semana",
-                new Date(),
+                LocalDate.of(2024, 4, 1),
                 PeriodTypeDto.DAILY,
                 Period.ofDays(40),
                 new BigDecimal("500")
@@ -34,7 +35,7 @@ public class DataFactoryList {
                 1L,
                 1L,
                 "Lista Final de Semana",
-                new Date(),
+                LocalDate.of(2024, 4, 1),
                 PeriodTypeEntity.DAILY,
                 Period.ofDays(40),
                 new BigDecimal("500")
