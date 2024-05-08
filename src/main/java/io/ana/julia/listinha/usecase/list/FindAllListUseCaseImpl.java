@@ -3,10 +3,12 @@ package io.ana.julia.listinha.usecase.list;
 import io.ana.julia.listinha.data.ListRepository;
 import io.ana.julia.listinha.data.dto.ListDto;
 import io.ana.julia.listinha.data.mapper.ListMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class FindAllListUseCaseImpl implements FindAllListUseCase {
 
     private final ListRepository listRepository;

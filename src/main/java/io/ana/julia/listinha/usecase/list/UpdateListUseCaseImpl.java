@@ -6,7 +6,9 @@ import io.ana.julia.listinha.data.entity.ListEntity;
 import io.ana.julia.listinha.data.mapper.ListMapper;
 import io.ana.julia.listinha.exception.DescriptionAlreadyExistsException;
 import io.ana.julia.listinha.exception.IdNotExistsException;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UpdateListUseCaseImpl implements UpdateListUseCase{
 
     private final ListRepository listRepository;
