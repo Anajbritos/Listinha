@@ -1,12 +1,13 @@
 package io.ana.julia.listinha.service;
 
+import io.ana.julia.listinha.data.dto.ShoppingListDto;
 import io.ana.julia.listinha.data.dto.UserDto;
-import io.ana.julia.listinha.usecase.user.CreateUserUseCase;
-import io.ana.julia.listinha.usecase.user.DeleteUserUseCase;
-import io.ana.julia.listinha.usecase.user.FindAllUsersUseCase;
-import io.ana.julia.listinha.usecase.user.UpdateUserUseCase;
+import io.ana.julia.listinha.usecase.user.*;
+import io.ana.julia.listinha.utils.AssertionShoppingListData;
 import io.ana.julia.listinha.utils.AssertionUserData;
+import io.ana.julia.listinha.utils.DataFactoryShoppingList;
 import io.ana.julia.listinha.utils.DataFactoryUser;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,6 +26,7 @@ public class UserServiceTest {
     private DeleteUserUseCase deleteUserUseCase;
     private UpdateUserUseCase updateUserUseCase;
     private FindAllUsersUseCase findAllUsersUseCase;
+    private GetListByUserUseCaseImpl getListByUserUseCase;
     private UserServiceImpl userService;
 
     @BeforeEach
@@ -33,11 +35,13 @@ public class UserServiceTest {
         deleteUserUseCase = Mockito.mock(DeleteUserUseCase.class);
         updateUserUseCase = Mockito.mock(UpdateUserUseCase.class);
         findAllUsersUseCase = Mockito.mock(FindAllUsersUseCase.class);
+        getListByUserUseCase = Mockito.mock(GetListByUserUseCaseImpl.class);
         userService = new UserServiceImpl(
                 createUserUseCase,
                 deleteUserUseCase,
                 updateUserUseCase,
-                findAllUsersUseCase);
+                findAllUsersUseCase,
+                getListByUserUseCase);
     }
 
     @Test
@@ -45,6 +49,7 @@ public class UserServiceTest {
         when(createUserUseCase.execute(any())).thenReturn(DataFactoryUser.userDTO());
 
         UserDto userDTO = userService.createUser(DataFactoryUser.userDTO());
+        Assertions.assertNotNull(userDTO);
         AssertionUserData.assertMapperUserDTOEqual(DataFactoryUser.userDTO(), userDTO);
 
         verify(createUserUseCase).execute(any());
@@ -75,8 +80,25 @@ public class UserServiceTest {
                         DataFactoryUser.userDTO(),
                         DataFactoryUser.userDTO()));
         List<UserDto> userDTOS = userService.findAllUsers();
+        Assertions.assertNotNull(userDTOS);
         AssertionUserData.assertMapperUserDTOEqual(DataFactoryUser.userDTO(), userDTOS.get(0));
 
         verify(findAllUsersUseCase).execute();
+    }
+
+    @Test
+    public void givenUserId_whenGetListsById_thenReturnValidListByUser() {
+        when(getListByUserUseCase.execute(any())).thenReturn(
+                List.of(DataFactoryShoppingList.listDto(),
+                        DataFactoryShoppingList.listDto()));
+
+        List<ShoppingListDto> shoppingListDtos =
+                userService.getListsById(DataFactoryShoppingList.listEntity().getId());
+        Assertions.assertNotNull(shoppingListDtos);
+        AssertionShoppingListData.assertMapperListEquals(
+                DataFactoryShoppingList.listDto(), shoppingListDtos.get(0));
+
+        verify(getListByUserUseCase).execute(any());
+
     }
 }

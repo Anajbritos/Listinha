@@ -1,5 +1,6 @@
 package io.ana.julia.listinha.service;
 
+import io.ana.julia.listinha.data.dto.ShoppingListDto;
 import io.ana.julia.listinha.data.dto.UserDto;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface UserService {
     void deleteUser(Long id);
     UserDto updateUser(UserDto userDTO);
     List<UserDto> findAllUsers();
+    List<ShoppingListDto> getListsById(Long id);
 }

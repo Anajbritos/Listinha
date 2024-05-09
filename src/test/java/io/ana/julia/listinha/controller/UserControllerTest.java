@@ -1,8 +1,11 @@
 package io.ana.julia.listinha.controller;
 
+import io.ana.julia.listinha.data.dto.ShoppingListDto;
 import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.service.UserService;
+import io.ana.julia.listinha.utils.AssertionShoppingListData;
 import io.ana.julia.listinha.utils.AssertionUserData;
+import io.ana.julia.listinha.utils.DataFactoryShoppingList;
 import io.ana.julia.listinha.utils.DataFactoryUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -93,6 +96,26 @@ public class UserControllerTest {
         Assertions.assertEquals(responseFindAllUser.getBody().get(0).getClass(), DataFactoryUser.userDTO().getClass());
 
         verify(userService).findAllUsers();
+    }
+
+    @Test
+    public void givenUserId_whenGetShoppingListByUser_thenReturnResponseShoppingListByUser() {
+        when(userService.getListsById(any())).thenReturn(
+                List.of(
+                        DataFactoryShoppingList.listDto(),
+                        DataFactoryShoppingList.listDto()));
+
+        ResponseEntity<List<ShoppingListDto>> listResponseEntity =
+                userController.getShoppingListByUser(DataFactoryShoppingList.listEntity().getId());
+
+        Assertions.assertNotNull(listResponseEntity);
+        Assertions.assertNotNull(listResponseEntity.getBody());
+        Assertions.assertEquals(listResponseEntity.getStatusCode(), HttpStatus.OK);
+        AssertionShoppingListData.assertMapperListEquals(listResponseEntity.getBody().get(0), DataFactoryShoppingList.listDto());
+        Assertions.assertEquals(listResponseEntity.getBody().size(), 2);
+        Assertions.assertEquals(listResponseEntity.getBody().get(0).getClass(), DataFactoryShoppingList.listDto().getClass());
+
+        verify(userService).getListsById(any());
     }
 
 }

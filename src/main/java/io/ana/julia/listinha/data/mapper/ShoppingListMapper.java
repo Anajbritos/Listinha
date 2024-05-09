@@ -25,7 +25,9 @@ public class ShoppingListMapper {
         );
     }
 
-    public ShoppingListEntity toListEntity(ShoppingListDto shoppingListDto, UserEntity userEntity) {
+    public ShoppingListEntity toListEntity(
+            ShoppingListDto shoppingListDto,
+            UserEntity userEntity) {
         return new ShoppingListEntity(
                 shoppingListDto.getId(),
                 userEntity,

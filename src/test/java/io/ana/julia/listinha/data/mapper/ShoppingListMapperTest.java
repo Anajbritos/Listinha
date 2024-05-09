@@ -7,7 +7,7 @@ import io.ana.julia.listinha.utils.AssertionShoppingListData;
 import io.ana.julia.listinha.utils.DataFactoryShoppingList;
 import org.junit.jupiter.api.Test;
 
-public class ShoppingShoppingListMapperTest {
+public class ShoppingListMapperTest {
 
     private final ShoppingListMapper shoppingListMapper = new ShoppingListMapper();
     private final UserEntity userEntity = new UserEntity();

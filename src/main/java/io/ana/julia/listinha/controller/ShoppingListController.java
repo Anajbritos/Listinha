@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/shopping-list")
+@RequestMapping("/shopping-lists")
 public class ShoppingListController {
 
     private ShoppingListService shoppingListService;
@@ -35,7 +35,7 @@ public class ShoppingListController {
         return ResponseEntity.status(HttpStatus.OK).body(requestBody);
     }
 
-    @GetMapping("/find-all")
+    @GetMapping("/all")
     public ResponseEntity<List<ShoppingListDto>> findAllList() {
         List<ShoppingListDto> requestBody = shoppingListService.findAllLists();
         return ResponseEntity.status(HttpStatus.OK).body(requestBody);

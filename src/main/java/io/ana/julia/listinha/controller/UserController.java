@@ -1,7 +1,9 @@
 package io.ana.julia.listinha.controller;
 
+import io.ana.julia.listinha.data.dto.ShoppingListDto;
 import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.service.UserService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
@@ -35,9 +37,16 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(updateUserDto);
     }
 
-    @GetMapping("/find-all")
+    @GetMapping("/all")
     public ResponseEntity<List<UserDto>> findAllUsers() {
         List<UserDto> findAllUsersDto = userService.findAllUsers();
         return ResponseEntity.status(HttpStatus.OK).body(findAllUsersDto);
+    }
+
+    @GetMapping("/{id}/shopping-lists")
+    public ResponseEntity<List<ShoppingListDto>> getShoppingListByUser(
+            @PathVariable("id") Long id) {
+        List<ShoppingListDto> getListById = userService.getListsById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(getListById);
     }
 }
