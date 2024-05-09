@@ -1,36 +1,48 @@
-package io.ana.julia.listinha.data.dto;
+package io.ana.julia.listinha.data.entity;
 
-import io.ana.julia.listinha.data.dto.enumDto.PeriodTypeDto;
+import io.ana.julia.listinha.data.entity.enumEntity.PeriodTypeEntity;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.Period;
 
-public class ListDto {
+@Entity
+@Table(name = "tb_shopping_list")
+public class ShoppingListEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //    private Long idUser;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserEntity user;
+    @Column(name = "description_list",unique = true)
     private String description;
+    @Column(name = "date")
     private LocalDate date;
-    private PeriodTypeDto periodTypeDto;
+    @Column(name = "period_type")
+    @Enumerated(EnumType.STRING)
+    private PeriodTypeEntity periodTypeEntity;
+    @Column(name = "period")
     private Integer period;
+    @Column(name = "amount_list")
     private BigDecimal amount;
 
-    public ListDto() {
-    }
-
-    public ListDto(
+    public ShoppingListEntity(){}
+    public ShoppingListEntity(
             Long id,
-//            Long idUser,
+            UserEntity user,
             String description,
             LocalDate date,
-            PeriodTypeDto periodTypeDto,
+            PeriodTypeEntity periodTypeEntity,
             Integer period,
             BigDecimal amount) {
+
         this.id = id;
-//        this.idUser = idUser;
+        this.user = user;
         this.description = description;
         this.date = date;
-        this.periodTypeDto = periodTypeDto;
+        this.periodTypeEntity = periodTypeEntity;
         this.period = period;
         this.amount = amount;
     }
@@ -43,13 +55,13 @@ public class ListDto {
         this.id = id;
     }
 
-//    public Long getIdUser() {
-//        return idUser;
-//    }
+    public UserEntity getUser() {
+        return user;
+    }
 
-//    public void setIdUser(Long idUser) {
-//        this.idUser = idUser;
-//    }
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
 
     public String getDescription() {
         return description;
@@ -67,12 +79,12 @@ public class ListDto {
         this.date = date;
     }
 
-    public PeriodTypeDto getPeriodTypeDto() {
-        return periodTypeDto;
+    public PeriodTypeEntity getPeriodTypeEntity() {
+        return periodTypeEntity;
     }
 
-    public void setPeriodTypeDto(PeriodTypeDto periodTypeDto) {
-        this.periodTypeDto = periodTypeDto;
+    public void setPeriodTypeEntity(PeriodTypeEntity periodTypeEntity) {
+        this.periodTypeEntity = periodTypeEntity;
     }
 
     public Integer getPeriod() {
@@ -90,5 +102,4 @@ public class ListDto {
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
-
 }

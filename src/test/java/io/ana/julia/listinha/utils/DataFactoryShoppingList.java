@@ -1,18 +1,21 @@
 package io.ana.julia.listinha.utils;
-import io.ana.julia.listinha.data.dto.ListDto;
+import io.ana.julia.listinha.data.dto.ShoppingListDto;
+import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.dto.enumDto.PeriodTypeDto;
-import io.ana.julia.listinha.data.entity.ListEntity;
+import io.ana.julia.listinha.data.entity.ShoppingListEntity;
+import io.ana.julia.listinha.data.entity.UserEntity;
 import io.ana.julia.listinha.data.entity.enumEntity.PeriodTypeEntity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class DataFactoryList {
+public class DataFactoryShoppingList {
 
-    public static ListDto listDto() {
-        return new ListDto(
+    public static ShoppingListDto listDto() {
+
+        return new ShoppingListDto(
                 1L,
-//                1L,
+                1L,
                 "Lista Final de Semana",
                 LocalDate.of(2024, 4, 1),
                 PeriodTypeDto.DAILY,
@@ -21,10 +24,12 @@ public class DataFactoryList {
         );
     }
 
-    public static ListEntity listEntity() {
-        return new ListEntity(
+    public static ShoppingListEntity listEntity() {
+        UserEntity user = new UserEntity();
+        user.setId(1L);
+        return new ShoppingListEntity(
                 1L,
-//                1L,
+                user,
                 "Lista Final de Semana",
                 LocalDate.of(2024, 4, 1),
                 PeriodTypeEntity.DAILY,
