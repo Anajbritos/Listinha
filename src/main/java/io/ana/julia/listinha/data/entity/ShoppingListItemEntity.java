@@ -18,12 +18,12 @@ public class ShoppingListItemEntity {
     @JoinColumn(name = "item_id")
     private ItemEntity item;
 
-    public ShoppingListItemEntity(){}
+    public ShoppingListItemEntity() {
+    }
+
     public ShoppingListItemEntity(
-            Long id,
             ShoppingListEntity shoppingList,
             ItemEntity item) {
-        this.id = id;
         this.shoppingList = shoppingList;
         this.item = item;
     }

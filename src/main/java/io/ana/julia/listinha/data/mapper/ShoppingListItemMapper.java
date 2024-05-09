@@ -11,7 +11,6 @@ public class ShoppingListItemMapper {
 
     public ShoppingListItemDto toShoppingListItemDto(
             ShoppingListItemEntity shoppingListItemEntity) {
-
         return new ShoppingListItemDto(
                 shoppingListItemEntity.getId(),
                 shoppingListItemEntity.getShoppingList().getId(),
@@ -19,11 +18,9 @@ public class ShoppingListItemMapper {
     }
 
     public ShoppingListItemEntity toShoppingListItemEntity(
-            ShoppingListItemDto shoppingListItemDto,
             ShoppingListEntity shoppingListEntity,
             ItemEntity itemEntity) {
         return new ShoppingListItemEntity(
-                shoppingListItemDto.getId(),
                 shoppingListEntity,
                 itemEntity
         );
