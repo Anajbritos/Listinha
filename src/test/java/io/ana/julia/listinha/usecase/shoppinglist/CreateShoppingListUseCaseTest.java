@@ -5,8 +5,10 @@ import io.ana.julia.listinha.data.UserRepository;
 import io.ana.julia.listinha.data.dto.ShoppingListDto;
 import io.ana.julia.listinha.data.mapper.ShoppingListMapper;
 import io.ana.julia.listinha.exception.DescriptionAlreadyExistsException;
+import io.ana.julia.listinha.exception.IdNotExistsException;
 import io.ana.julia.listinha.utils.AssertionShoppingListData;
 import io.ana.julia.listinha.utils.DataFactoryShoppingList;
+import io.ana.julia.listinha.utils.DataFactoryUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,7 +43,7 @@ public class CreateShoppingListUseCaseTest {
 
     @Test
     public void givenListDTO_whenExecute_thenCreateListWithSuccess() {
-        when(shoppingListRepository.existsByDescription(any())).thenReturn(false);
+        when(shoppingListRepository.existsByDescriptionIgnoreCaseAndId(any(),any())).thenReturn(false);
         when(userRepository.findById(any())).thenReturn(Optional.of(DataFactoryShoppingList.listEntity().getUser()));
         when(shoppingListMapper.toListEntity(any(),any())).thenReturn(DataFactoryShoppingList.listEntity());
         when(shoppingListRepository.save(any())).thenReturn(DataFactoryShoppingList.listEntity());
@@ -52,7 +54,7 @@ public class CreateShoppingListUseCaseTest {
                         DataFactoryShoppingList.listDto());
         AssertionShoppingListData.assertMapperListEquals(shoppingListDto, DataFactoryShoppingList.listDto());
 
-        verify(shoppingListRepository).existsByDescription(any());
+        verify(shoppingListRepository).existsByDescriptionIgnoreCaseAndId(any(),any());
         verify(userRepository).findById(any());
         verify(shoppingListMapper).toListEntity(any(),any());
         verify(shoppingListRepository).save(any());
@@ -61,11 +63,26 @@ public class CreateShoppingListUseCaseTest {
 
     @Test
     public void givenListDTO_whenExecute_thenCreateListWithFailure() {
-        when(shoppingListRepository.existsByDescription(any())).thenReturn(true);
+        when(shoppingListRepository.existsByDescriptionIgnoreCaseAndId(any(),any())).thenReturn(true);
 
         Assertions.assertThrows(
                 DescriptionAlreadyExistsException.class,
-                ()-> createShoppingListUseCase.execute(DataFactoryShoppingList.listDto()));
-        verify(shoppingListRepository).existsByDescription(any());
+                ()-> createShoppingListUseCase
+                        .execute(DataFactoryShoppingList.listDto()));
+
+        verify(shoppingListRepository).existsByDescriptionIgnoreCaseAndId(any(),any());
+    }
+
+    @Test
+    public void givenListDTO_whenExecute_thenCreateListWithIdFailure() {
+        when(shoppingListRepository.existsByDescriptionIgnoreCaseAndId(any(),any())).thenReturn(false);
+        when(userRepository.findById(any())).thenReturn(Optional.empty());
+
+        Assertions.assertThrows(
+                IdNotExistsException.class,
+                ()-> createShoppingListUseCase
+                        .execute(DataFactoryShoppingList.listDto()));
+
+        verify(shoppingListRepository).existsByDescriptionIgnoreCaseAndId(any(),any());
     }
 }

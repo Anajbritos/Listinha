@@ -50,8 +50,8 @@ public class UpdateShoppingListUseCaseImpl implements UpdateShoppingListUseCase 
 
     @Override
     public ShoppingListDto execute(ShoppingListDto shoppingListDto) {
-        findListExistById(shoppingListDto.getId());
         findListExistByDescription(shoppingListDto.getDescription());
+        findListExistById(shoppingListDto.getId());
         ShoppingListEntity shoppingListEntity =
                 shoppingListRepository.save(
                         shoppingListMapper.toListEntity(shoppingListDto,

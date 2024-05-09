@@ -1,10 +1,8 @@
 package io.ana.julia.listinha.service;
 
+import io.ana.julia.listinha.data.dto.ShoppingListDto;
 import io.ana.julia.listinha.data.dto.UserDto;
-import io.ana.julia.listinha.usecase.user.CreateUserUseCase;
-import io.ana.julia.listinha.usecase.user.DeleteUserUseCase;
-import io.ana.julia.listinha.usecase.user.FindAllUsersUseCase;
-import io.ana.julia.listinha.usecase.user.UpdateUserUseCase;
+import io.ana.julia.listinha.usecase.user.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,15 +14,18 @@ public class UserServiceImpl implements UserService{
     public DeleteUserUseCase deleteUserUseCase;
     public UpdateUserUseCase updateUserUseCase;
     public FindAllUsersUseCase findAllUsersUseCase;
+    public GetListByUserUseCase getListByUserUseCase;
 
     public UserServiceImpl(CreateUserUseCase createUserUseCase,
                            DeleteUserUseCase deleteUserUseCase,
                            UpdateUserUseCase updateUserUseCase,
-                           FindAllUsersUseCase findAllUsersUseCase) {
+                           FindAllUsersUseCase findAllUsersUseCase,
+                           GetListByUserUseCase getListByUserUseCase) {
         this.createUserUseCase = createUserUseCase;
         this.deleteUserUseCase = deleteUserUseCase;
         this.updateUserUseCase = updateUserUseCase;
         this.findAllUsersUseCase = findAllUsersUseCase;
+        this.getListByUserUseCase = getListByUserUseCase;
     }
 
 
@@ -46,5 +47,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<UserDto> findAllUsers() {
         return findAllUsersUseCase.execute();
+    }
+
+    @Override
+    public List<ShoppingListDto> getListsById(Long id) {
+        return getListByUserUseCase.execute(id);
     }
 }

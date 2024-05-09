@@ -29,9 +29,9 @@ public class CreateShoppingListUseCaseImpl implements CreateShoppingListUseCase 
         this.shoppingListMapper = shoppingListMapper;
     }
 
-    private void findListExistByDescription(String description) {
-        if (shoppingListRepository.existsByDescription(description)) {
-            throw new DescriptionAlreadyExistsException("Lista já existente com essa descricao");
+    private void findListExistByDescription(String description, Long id) {
+        if (shoppingListRepository.existsByDescriptionIgnoreCaseAndId(description, id)) {
+            throw new DescriptionAlreadyExistsException("Lista já existente para esse usuario");
         }
     }
 
@@ -45,7 +45,7 @@ public class CreateShoppingListUseCaseImpl implements CreateShoppingListUseCase 
 
     @Override
     public ShoppingListDto execute(ShoppingListDto shoppingListDto) {
-        findListExistByDescription(shoppingListDto.getDescription());
+        findListExistByDescription(shoppingListDto.getDescription(),shoppingListDto.getUserId());
         ShoppingListEntity shoppingListEntity = shoppingListMapper.toListEntity(
                 shoppingListDto,
                 getUserById(shoppingListDto.getUserId()));

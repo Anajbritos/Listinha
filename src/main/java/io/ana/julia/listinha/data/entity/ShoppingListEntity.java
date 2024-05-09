@@ -16,7 +16,7 @@ public class ShoppingListEntity {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
-    @Column(name = "description_list",unique = true)
+    @Column(name = "description_list")
     private String description;
     @Column(name = "date")
     private LocalDate date;
