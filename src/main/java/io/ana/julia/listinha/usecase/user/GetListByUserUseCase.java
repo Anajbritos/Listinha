@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface GetListByUserUseCase {
 
-    public List<ShoppingListDto> execute(Long id);
+    List<ShoppingListDto> execute(Long id);
 }

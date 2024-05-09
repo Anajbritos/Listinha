@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/shopping-lists")
 public class ShoppingListController {
 
-    private ShoppingListService shoppingListService;
+    private final ShoppingListService shoppingListService;
 
     public ShoppingListController(ShoppingListService shoppingListService) {
         this.shoppingListService = shoppingListService;

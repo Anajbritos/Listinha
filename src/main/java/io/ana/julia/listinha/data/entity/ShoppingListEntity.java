@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_shopping_list")
@@ -18,6 +19,7 @@ public class ShoppingListEntity {
     private UserEntity user;
     @Column(name = "description_list")
     private String description;
+    @Temporal(value = TemporalType.DATE)
     @Column(name = "date")
     private LocalDate date;
     @Column(name = "period_type")
@@ -27,6 +29,11 @@ public class ShoppingListEntity {
     private Integer period;
     @Column(name = "amount_list")
     private BigDecimal amount;
+
+    @OneToMany(mappedBy = "shopping_list",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<ShoppingListItemEntity> shoppingListItemEntities;
 
     public ShoppingListEntity(){}
     public ShoppingListEntity(
@@ -101,5 +108,13 @@ public class ShoppingListEntity {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public List<ShoppingListItemEntity> getShoppingListItems() {
+        return shoppingListItemEntities;
+    }
+
+    public void setShoppingListItems(List<ShoppingListItemEntity> shoppingListItemEntities) {
+        this.shoppingListItemEntities = shoppingListItemEntities;
     }
 }
