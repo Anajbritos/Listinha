@@ -30,7 +30,7 @@ public class ShoppingListEntity {
     @Column(name = "amount_list")
     private BigDecimal amount;
 
-    @OneToMany(mappedBy = "shopping_list",
+    @OneToMany(mappedBy = "shoppingList",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<ShoppingListItemEntity> shoppingListItemEntities;

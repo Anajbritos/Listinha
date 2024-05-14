@@ -36,7 +36,7 @@ public class ItemController {
         return ResponseEntity.status(HttpStatus.OK).body(bodyDto);
     }
 
-    @GetMapping("/find-all")
+    @GetMapping("/all")
     public ResponseEntity<List<ItemDto>> findAllItems() {
         List<ItemDto> bodyDtos = itemService.findAllItems();
         return ResponseEntity.status(HttpStatus.OK).body(bodyDtos);

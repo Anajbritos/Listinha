@@ -1,9 +1,10 @@
 package io.ana.julia.listinha.controller;
 
 import io.ana.julia.listinha.data.dto.ShoppingListDto;
+import io.ana.julia.listinha.data.dto.ShoppingListItemDto;
 import io.ana.julia.listinha.data.dto.UserDto;
+import io.ana.julia.listinha.service.ShoppingListItemService;
 import io.ana.julia.listinha.service.UserService;
-import jakarta.websocket.server.PathParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +16,13 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    public UserController(UserService userService) {
+    private final ShoppingListItemService shoppingListItemService;
+
+    public UserController(
+            UserService userService,
+            ShoppingListItemService shoppingListItemService) {
         this.userService = userService;
+        this.shoppingListItemService = shoppingListItemService;
     }
 
     @PostMapping("/create")
@@ -48,5 +54,28 @@ public class UserController {
             @PathVariable("id") Long id) {
         List<ShoppingListDto> getListById = userService.getListsById(id);
         return ResponseEntity.status(HttpStatus.OK).body(getListById);
+    }
+
+    @PostMapping("/{userId}/shopping-lists/{shoppingListId}/shopping-list-item/{itemId}")
+    public ResponseEntity<List<ShoppingListItemDto>> addShoppingListItem(
+            @PathVariable("userId") Long userId,
+            @PathVariable("shoppingListId") Long shoppingListId,
+            @PathVariable("itemId") Long itemId
+    ) {
+        List<ShoppingListItemDto> body = shoppingListItemService.addItemOnShoppingList(
+                userId, itemId, shoppingListId);
+        return ResponseEntity.status(HttpStatus.OK).body(body);
+
+    }
+
+    @DeleteMapping("/shopping-lists/{shoppingListId}/shopping-list-item/{shoppingListItemId}")
+    public ResponseEntity<List<ShoppingListItemDto>> deleteShoppingListItem(
+            @PathVariable("shoppingListId") Long shoppingListId,
+            @PathVariable("shoppingListItemId") Long shoppingListItemId
+    ) {
+        List<ShoppingListItemDto> body = shoppingListItemService.removeItemOnShoppingList(
+                shoppingListItemId,
+                shoppingListId);
+        return ResponseEntity.status(HttpStatus.OK).body(body);
     }
 }

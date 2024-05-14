@@ -8,11 +8,11 @@ import io.ana.julia.listinha.data.entity.UserEntity;
 import io.ana.julia.listinha.data.mapper.ShoppingListMapper;
 import io.ana.julia.listinha.exception.DescriptionAlreadyExistsException;
 import io.ana.julia.listinha.exception.IdNotExistsException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Component
+@Service
 public class UpdateShoppingListUseCaseImpl implements UpdateShoppingListUseCase {
 
     private final ShoppingListRepository shoppingListRepository;

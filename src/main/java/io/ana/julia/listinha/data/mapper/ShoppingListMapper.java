@@ -1,7 +1,6 @@
 package io.ana.julia.listinha.data.mapper;
 
 import io.ana.julia.listinha.data.dto.ShoppingListDto;
-import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.dto.enumDto.PeriodTypeDto;
 import io.ana.julia.listinha.data.entity.ShoppingListEntity;
 import io.ana.julia.listinha.data.entity.UserEntity;

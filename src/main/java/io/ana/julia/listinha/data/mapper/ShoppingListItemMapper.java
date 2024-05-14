@@ -1,5 +1,7 @@
 package io.ana.julia.listinha.data.mapper;
 
+import io.ana.julia.listinha.data.dto.ItemDto;
+import io.ana.julia.listinha.data.dto.ShoppingListDto;
 import io.ana.julia.listinha.data.dto.ShoppingListItemDto;
 import io.ana.julia.listinha.data.entity.ItemEntity;
 import io.ana.julia.listinha.data.entity.ShoppingListEntity;
@@ -10,11 +12,13 @@ import org.springframework.stereotype.Component;
 public class ShoppingListItemMapper {
 
     public ShoppingListItemDto toShoppingListItemDto(
-            ShoppingListItemEntity shoppingListItemEntity) {
+            ShoppingListItemEntity shoppingListItemEntity,
+            ItemDto itemDto,
+            ShoppingListDto shoppingListDto) {
         return new ShoppingListItemDto(
                 shoppingListItemEntity.getId(),
-                shoppingListItemEntity.getShoppingList().getId(),
-                shoppingListItemEntity.getItem().getId());
+                itemDto,
+                shoppingListDto);
     }
 
     public ShoppingListItemEntity toShoppingListItemEntity(

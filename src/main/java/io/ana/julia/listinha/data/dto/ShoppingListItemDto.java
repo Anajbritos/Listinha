@@ -1,25 +1,19 @@
 package io.ana.julia.listinha.data.dto;
 
-import io.ana.julia.listinha.data.entity.ItemEntity;
-import io.ana.julia.listinha.data.entity.ShoppingListEntity;
-import jakarta.persistence.*;
-
 public class ShoppingListItemDto {
 
     private Long id;
-
-    private Long shoppingListId;
-
-    private Long itemId;
+    private ItemDto item;
+    private ShoppingListDto shoppingListDto;
 
     public ShoppingListItemDto(){}
     public ShoppingListItemDto(
             Long id,
-            Long shoppingListId,
-            Long itemId) {
+            ItemDto item,
+            ShoppingListDto shoppingListDto) {
         this.id = id;
-        this.shoppingListId = shoppingListId;
-        this.itemId = itemId;
+        this.item = item;
+        this.shoppingListDto = shoppingListDto;
     }
 
     public void setId(Long id) {
@@ -30,19 +24,18 @@ public class ShoppingListItemDto {
         return id;
     }
 
-    public Long getShoppingListId() {
-        return shoppingListId;
+    public ItemDto getItem() {
+        return item;
     }
 
-    public void setShoppingListId(Long shoppingListId) {
-        this.shoppingListId = shoppingListId;
+    public void setItem(ItemDto item) {
+        this.item = item;
+    }
+    public ShoppingListDto getShoppingListDto() {
+        return shoppingListDto;
     }
 
-    public Long getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    public void setShoppingListDto(ShoppingListDto shoppingListDto) {
+        this.shoppingListDto = shoppingListDto;
     }
 }

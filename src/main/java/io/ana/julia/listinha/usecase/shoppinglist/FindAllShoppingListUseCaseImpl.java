@@ -3,12 +3,12 @@ package io.ana.julia.listinha.usecase.shoppinglist;
 import io.ana.julia.listinha.data.ShoppingListRepository;
 import io.ana.julia.listinha.data.dto.ShoppingListDto;
 import io.ana.julia.listinha.data.mapper.ShoppingListMapper;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 public class FindAllShoppingListUseCaseImpl implements FindAllShoppingListUseCase {
 
     private final ShoppingListRepository shoppingListRepository;

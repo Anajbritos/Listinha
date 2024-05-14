@@ -2,8 +2,6 @@ package io.ana.julia.listinha.data.entity;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "tb_user")
 public class UserEntity {

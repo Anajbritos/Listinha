@@ -1,7 +1,5 @@
 package io.ana.julia.listinha.data.dto;
 
-import java.util.List;
-
 public class UserDto {
     private Long id;
     private String name;
