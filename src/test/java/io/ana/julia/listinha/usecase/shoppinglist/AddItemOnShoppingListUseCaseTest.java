@@ -8,7 +8,6 @@ import io.ana.julia.listinha.data.mapper.ShoppingListItemMapper;
 import io.ana.julia.listinha.exception.IdNotExistsException;
 import io.ana.julia.listinha.utils.DataFactoryItem;
 import io.ana.julia.listinha.utils.DataFactoryShoppingList;
-import io.ana.julia.listinha.utils.DataFactoryShoppingListItem;
 import io.ana.julia.listinha.utils.DataFactoryUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

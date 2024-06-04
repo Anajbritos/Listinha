@@ -16,9 +16,9 @@ import java.util.Optional;
 public class AddItemOnShoppingListUseCaseImpl implements AddItemOnShoppingListUseCase {
 
     private final ShoppingListRepository shoppingListRepository;
-    private final ShoppingListItemRepository shoppingListItemRepository; // esse
+    private final ShoppingListItemRepository shoppingListItemRepository;
     private final ShoppingListItemMapper shoppingListMapper;
-    private final UserRepository userRepository; // esse
+    private final UserRepository userRepository;
     private final ItemRepository itemRepository;
 
 
@@ -59,8 +59,8 @@ public class AddItemOnShoppingListUseCaseImpl implements AddItemOnShoppingListUs
 
     @Override
     public void execute(Long user, Long item, Long list) {
-        existsById(user);
         ShoppingListEntity shoppingListEntity = getListById(list);
+        existsById(user);
         ItemEntity itemEntity = getItemById(item);
         shoppingListItemRepository.save(
                 shoppingListMapper.toShoppingListItemEntity(

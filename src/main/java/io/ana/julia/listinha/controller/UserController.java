@@ -25,25 +25,25 @@ public class UserController {
         this.shoppingListItemService = shoppingListItemService;
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDTO) {
         UserDto createUserDto = userService.createUser(userDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createUserDto);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDTO) {
         UserDto updateUserDto = userService.updateUser(userDTO);
         return ResponseEntity.status(HttpStatus.OK).body(updateUserDto);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<UserDto>> findAllUsers() {
         List<UserDto> findAllUsersDto = userService.findAllUsers();
         return ResponseEntity.status(HttpStatus.OK).body(findAllUsersDto);
@@ -56,7 +56,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(getListById);
     }
 
-    @PostMapping("/{userId}/shopping-lists/{shoppingListId}/shopping-list-item/{itemId}")
+    @PostMapping("/{userId}/shopping-lists/{shoppingListId}/itemm/{itemId}")
     public ResponseEntity<List<ShoppingListItemDto>> addShoppingListItem(
             @PathVariable("userId") Long userId,
             @PathVariable("shoppingListId") Long shoppingListId,
@@ -68,7 +68,7 @@ public class UserController {
 
     }
 
-    @DeleteMapping("/shopping-lists/{shoppingListId}/shopping-list-item/{shoppingListItemId}")
+    @DeleteMapping("/shopping-lists/{shoppingListId}/item/{shoppingListItemId}")
     public ResponseEntity<List<ShoppingListItemDto>> deleteShoppingListItem(
             @PathVariable("shoppingListId") Long shoppingListId,
             @PathVariable("shoppingListItemId") Long shoppingListItemId

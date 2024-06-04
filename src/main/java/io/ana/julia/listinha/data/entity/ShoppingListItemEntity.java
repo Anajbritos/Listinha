@@ -22,6 +22,16 @@ public class ShoppingListItemEntity {
     }
 
     public ShoppingListItemEntity(
+            Long id,
+            ItemEntity item,
+            ShoppingListEntity shoppingList
+            ) {
+        this.id = id;
+        this.item = item;
+        this.shoppingList = shoppingList;
+    }
+
+    public ShoppingListItemEntity(
             ShoppingListEntity shoppingList,
             ItemEntity item) {
         this.shoppingList = shoppingList;
