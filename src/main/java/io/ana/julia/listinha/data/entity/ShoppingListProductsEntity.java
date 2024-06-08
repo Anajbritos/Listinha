@@ -3,8 +3,8 @@ package io.ana.julia.listinha.data.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "tb_shopping_list_item")
-public class ShoppingListItemEntity {
+@Table(name = "tb_shopping_list_product")
+public class ShoppingListProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,27 +15,27 @@ public class ShoppingListItemEntity {
     private ShoppingListEntity shoppingList;
 
     @ManyToOne
-    @JoinColumn(name = "item_id")
-    private ItemEntity item;
+    @JoinColumn(name = "product_id")
+    private ProductEntity product;
 
-    public ShoppingListItemEntity() {
+    public ShoppingListProductEntity() {
     }
 
-    public ShoppingListItemEntity(
+    public ShoppingListProductEntity(
             Long id,
-            ItemEntity item,
+            ProductEntity product,
             ShoppingListEntity shoppingList
             ) {
         this.id = id;
-        this.item = item;
+        this.product = product;
         this.shoppingList = shoppingList;
     }
 
-    public ShoppingListItemEntity(
+    public ShoppingListProductEntity(
             ShoppingListEntity shoppingList,
-            ItemEntity item) {
+            ProductEntity product) {
         this.shoppingList = shoppingList;
-        this.item = item;
+        this.product = product;
     }
 
 
@@ -47,12 +47,12 @@ public class ShoppingListItemEntity {
         this.shoppingList = shoppingList;
     }
 
-    public ItemEntity getItem() {
-        return item;
+    public ProductEntity getProduct() {
+        return product;
     }
 
-    public void setItem(ItemEntity item) {
-        this.item = item;
+    public void setProduct(ProductEntity product) {
+        this.product = product;
     }
 
 
