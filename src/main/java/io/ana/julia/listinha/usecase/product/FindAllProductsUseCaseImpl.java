@@ -3,11 +3,11 @@ package io.ana.julia.listinha.usecase.item;
 import io.ana.julia.listinha.data.ItemRepository;
 import io.ana.julia.listinha.data.dto.ItemDto;
 import io.ana.julia.listinha.data.mapper.ItemMapper;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-@Component
+@Service
 public class FindAllItemsUseCaseImpl implements FindAllItemsUseCase {
 
     private final ItemRepository itemRepository;

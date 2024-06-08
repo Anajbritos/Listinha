@@ -5,6 +5,7 @@ import io.ana.julia.listinha.data.entity.enumEntity.UnitOfMeasureItemEntity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_item")
@@ -23,6 +24,11 @@ public class ItemEntity {
     private UnitOfMeasureItemEntity itemMeasurementEntity;
     @Column(name = "price")
     private BigDecimal price;
+
+    @OneToMany(mappedBy = "item",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<ShoppingListItemEntity> shoppingListItemEntities;
 
     public ItemEntity() {
     }
@@ -70,7 +76,7 @@ public class ItemEntity {
     }
 
     public void setItemMeasurementEntity(UnitOfMeasureItemEntity itemMeasurementEntity) {
-        this.itemMeasurementEntity = itemMeasurementEntity ;
+        this.itemMeasurementEntity = itemMeasurementEntity;
     }
 
     public BigDecimal getPrice() {
@@ -79,5 +85,13 @@ public class ItemEntity {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public List<ShoppingListItemEntity> getShoppingListItems() {
+        return shoppingListItemEntities;
+    }
+
+    public void setShoppingListItems(List<ShoppingListItemEntity> shoppingListItemEntities) {
+        this.shoppingListItemEntities = shoppingListItemEntities;
     }
 }

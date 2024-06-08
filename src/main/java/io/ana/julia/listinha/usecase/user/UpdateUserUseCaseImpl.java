@@ -5,9 +5,9 @@ import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.entity.UserEntity;
 import io.ana.julia.listinha.data.mapper.UserMapper;
 import io.ana.julia.listinha.exception.IdNotExistsException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class UpdateUserUseCaseImpl implements UpdateUserUseCase{
 
     private final UserRepository userRepository;

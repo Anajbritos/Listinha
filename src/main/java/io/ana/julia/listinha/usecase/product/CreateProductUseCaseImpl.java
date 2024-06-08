@@ -5,9 +5,9 @@ import io.ana.julia.listinha.data.dto.ItemDto;
 import io.ana.julia.listinha.data.entity.ItemEntity;
 import io.ana.julia.listinha.data.mapper.ItemMapper;
 import io.ana.julia.listinha.exception.DescriptionAlreadyExistsException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class CreateItemUseCaseImpl implements CreateItemUseCase{
 
     private final ItemRepository itemRepository;

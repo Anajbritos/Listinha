@@ -9,13 +9,16 @@ import io.ana.julia.listinha.utils.AssertionShoppingListData;
 import io.ana.julia.listinha.utils.DataFactoryShoppingList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class ShoppingListServiceTest {
 
     private static CreateShoppingListUseCase createShoppingListUseCase;

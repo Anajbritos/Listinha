@@ -1,30 +1,50 @@
 package io.ana.julia.listinha.data.dto;
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 public class UserDto {
     private Long id;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
-    public UserDto() {}
+    private Boolean isActive;
+    private LocalDateTime createAt;
+    private LocalDateTime updateAt;
+
+    public UserDto() {
+    }
+
     public UserDto(
             Long id,
-            String name,
+            String firstName,
+            String lastName,
             String email,
-            String password) {
+            String password,
+            Boolean isActive,
+            LocalDateTime createAt,
+            LocalDateTime updateAt) {
         this.id = id;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-       this.password = password;
+        this.password = password;
+        this.isActive = isActive;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public void setEmail(String email) {
@@ -36,11 +56,15 @@ public class UserDto {
     }
 
     public Long getId() {
-       return this.id;
+        return this.id;
     }
 
-    public String getName() {
-        return this.name;
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
     }
 
     public String getEmail() {

@@ -4,24 +4,30 @@ import io.ana.julia.listinha.data.dto.UserDto;
 import io.ana.julia.listinha.data.entity.UserEntity;
 import org.springframework.stereotype.Component;
 
-import java.util.stream.Collectors;
-
 @Component
 public class UserMapper {
 
     public UserDto toUserDTO(UserEntity userEntity) {
         return new UserDto(
                 userEntity.getId(),
-                userEntity.getName(),
+                userEntity.getFirstName(),
+                userEntity.getLastName(),
                 userEntity.getEmail(),
-                userEntity.getPassword());
+                userEntity.getPassword(),
+                userEntity.getActive(),
+                userEntity.getCreateAt(),
+                userEntity.getUpdateAt());
     }
 
     public UserEntity toUserEntity(UserDto userDTO) {
         return new UserEntity(
                 userDTO.getId(),
-                userDTO.getName(),
+                userDTO.getFirstName(),
+                userDTO.getLastName(),
                 userDTO.getEmail(),
-                userDTO.getPassword());
+                userDTO.getPassword(),
+                userDTO.getActive(),
+                userDTO.getCreateAt(),
+                userDTO.getUpdateAt());
     }
 }

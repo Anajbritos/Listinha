@@ -3,9 +3,9 @@ package io.ana.julia.listinha.usecase.shoppinglist;
 import io.ana.julia.listinha.data.ShoppingListRepository;
 import io.ana.julia.listinha.data.mapper.ShoppingListMapper;
 import io.ana.julia.listinha.exception.IdNotExistsException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class DeleteShoppingListUseCaseImpl implements DeleteShoppingListUseCase {
 
     private final ShoppingListRepository shoppingListRepository;

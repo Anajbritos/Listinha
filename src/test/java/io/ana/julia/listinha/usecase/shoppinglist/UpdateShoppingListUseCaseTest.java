@@ -73,14 +73,12 @@ public class UpdateShoppingListUseCaseTest {
 
     @Test
     public void givenListDTO_whenExecute_thenUpdateListFailureWithDescription() {
-        when(shoppingListRepository.findById(any())).thenReturn(Optional.of(DataFactoryShoppingList.listEntity()));
         when(shoppingListRepository.existsByDescription(any())).thenReturn(true);
 
         Assertions.assertThrows(
                 DescriptionAlreadyExistsException.class,
                 () -> updateListUseCase.execute(DataFactoryShoppingList.listDto()));
 
-        verify(shoppingListRepository).findById(any());
         verify(shoppingListRepository).existsByDescription(any());
     }
 

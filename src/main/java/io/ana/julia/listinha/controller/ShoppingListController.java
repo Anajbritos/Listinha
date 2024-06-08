@@ -12,30 +12,30 @@ import java.util.List;
 @RequestMapping("/shopping-lists")
 public class ShoppingListController {
 
-    private ShoppingListService shoppingListService;
+    private final ShoppingListService shoppingListService;
 
     public ShoppingListController(ShoppingListService shoppingListService) {
         this.shoppingListService = shoppingListService;
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<ShoppingListDto> createList(@RequestBody ShoppingListDto shoppingListDto) {
         ShoppingListDto requestBody = shoppingListService.createList(shoppingListDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(requestBody);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteList(@PathVariable Long id) {
         shoppingListService.deleteList(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<ShoppingListDto> updateList(@RequestBody ShoppingListDto shoppingListDto) {
         ShoppingListDto requestBody = shoppingListService.updateList(shoppingListDto);
         return ResponseEntity.status(HttpStatus.OK).body(requestBody);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<ShoppingListDto>> findAllList() {
         List<ShoppingListDto> requestBody = shoppingListService.findAllLists();
         return ResponseEntity.status(HttpStatus.OK).body(requestBody);

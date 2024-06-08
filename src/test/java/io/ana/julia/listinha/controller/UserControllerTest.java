@@ -2,6 +2,7 @@ package io.ana.julia.listinha.controller;
 
 import io.ana.julia.listinha.data.dto.ShoppingListDto;
 import io.ana.julia.listinha.data.dto.UserDto;
+import io.ana.julia.listinha.service.ShoppingListItemService;
 import io.ana.julia.listinha.service.UserService;
 import io.ana.julia.listinha.utils.AssertionShoppingListData;
 import io.ana.julia.listinha.utils.AssertionUserData;
@@ -26,11 +27,12 @@ public class UserControllerTest {
 
     private UserService userService;
     private UserController userController;
+    private ShoppingListItemService shoppingListItemService;
 
     @BeforeEach
     void setup() {
         userService = Mockito.mock(UserService.class);
-        userController = new UserController(userService);
+        userController = new UserController(userService, shoppingListItemService);
     }
 
     @Test
